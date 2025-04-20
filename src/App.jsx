@@ -81,22 +81,38 @@ function App() {
         }))
     );
 
+    function handleRadioChange(event) {
+        const { name, value } = event.target;
+        setResponses((prevResponses) => ({
+            ...prevResponses,
+            [name]: value,
+        }));
+    }
+
+    function handleSelectChange(event) {
+        const { name, value } = event.target;
+        setResponses((prevResponses) => ({
+            ...prevResponses,
+            [name]: value,
+        }));
+    }
+
     return (
         <div className="container mx-auto p-4 ">
             <h1 className="text-3xl font-bold mb-4">
                 KUISIONER PEMILIHAN E-WALLET TERBAIK UNTUK TRANSAKSI DIGITAL
                 BAGI MAHASISWA
             </h1>
-            {/* <Level1 perbandinganKriteria={perbandinganKriteria} />
-            <Level2
+            <Level1 hierarchyData={hierarchyData} generatePairs={generatePairs}/>
+            {/* <Level2
                 hierarchyData={hierarchyData}
                 perbandinganSubKriteria={perbandinganSubKriteria}
             /> */}
-            <Level3
+            {/* <Level3
                 allSubCriteria={allSubCriteria}
                 hierarchyData={hierarchyData}
                 perbandinganAlternatif={perbandinganAlternatif}
-            />
+            /> */}
             {/* {perbandinganSubKriteria.map((subPairs, index) => (
                 <div key={index}>
                     <h2>{hierarchyData.criteria[index].name}</h2>

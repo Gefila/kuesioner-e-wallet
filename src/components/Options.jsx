@@ -1,28 +1,40 @@
-export default function Options({ onChange }) {
+export default function Options({
+    onChange,
+    element1,
+    element2,
+    index,
+    selectedElement,
+}) {
+    let notSelectedElement = selectedElement === element1 ? element2 : element1;
     return (
         <select
-            name=""
-            id=""
+            onChange={(e) => onChange(index, e.target.value)}
             className="select select-bordered w-full max-w-xs"
+            disabled={selectedElement === undefined}
+            defaultValue={"0"}
         >
-            <option value="1">1 - Kedua Elemen Sama Penting</option>
-            <option value="2">2 - </option>
+            <option disabled value="0">
+                Berapa Tingkat Kepentingannya ?
+            </option>
+            <option value="1">
+                1 -{" "}
+                {`${selectedElement} dan ${notSelectedElement} Sama Penting`}
+            </option>
+            <option value="2">2</option>
             <option value="3">
-                3 - Elemen yang satu sedikit lebih penting daripada yang lainnya
+                {`3 - ${selectedElement} sedikit lebih penting daripada ${notSelectedElement}`}
             </option>
             <option value="4">4</option>
             <option value="5">
-                5 - Elemen yang satu lebih penting daripada yang lainnya
+                {`5 - ${selectedElement} lebih penting daripada ${notSelectedElement}`}
             </option>
             <option value="6">6</option>
             <option value="7">
-                7 - Elemen yang satu jelas sangat penting daripada elemen yang
-                lainnya
+                {`7 - ${selectedElement} jelas sangat penting daripada ${notSelectedElement}`}
             </option>
             <option value="8">8</option>
             <option value="9">
-                9 - Elemen yang satu mutlak sangat penting daripada elemen yang
-                lainnya
+                {`9 - ${selectedElement} mutlak sangat penting daripada ${notSelectedElement}`}
             </option>
         </select>
     );
