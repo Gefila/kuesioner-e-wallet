@@ -1,12 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import Options from "./Options";
 import Radios from "./Radios";
 
-export default function Level2({ hierarchyData, generatePairs }) {
-    const [responsesLevel2, setResponsesLevel2] = useState({
-        level: 2,
-        kriteria: [],
-    });
+export default function Level2({ hierarchyData, generatePairs, responsesLevel2, setResponsesLevel2 }) {
 
     const perbandinganSubKriteria = hierarchyData.criteria.map((criterion) =>
         generatePairs(criterion.subCriteria)
@@ -27,6 +23,10 @@ export default function Level2({ hierarchyData, generatePairs }) {
             updated[index].jawaban[subIndex] = {
                 ...existingAnswer,
                 tingkatKepentingan: existingAnswer.tingkatKepentingan || 0,
+                pilihan: [
+                    perbandinganSubKriteria[index][subIndex][0].name,
+                    perbandinganSubKriteria[index][subIndex][1].name,
+                ],
                 selected: value,
             };
 

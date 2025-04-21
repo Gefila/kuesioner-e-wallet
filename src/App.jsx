@@ -5,6 +5,22 @@ import Level3 from "./components/Level3";
 
 function App() {
     const [responses, setResponses] = useState([]);
+    const [level, setLevel] = useState(1);
+
+    const [responsesLevel1, setResponsesLevel1] = useState({
+        level: 1,
+        jawaban: [],
+    });
+
+    const [responsesLevel2, setResponsesLevel2] = useState({
+        level: 2,
+        kriteria: [],
+    });
+
+    const [responsesLevel3, setResponsesLevel3] = useState({
+        level: 3,
+        kriteria: [],
+    });
     const [hierarchyData, setHierarchyData] = useState({
         criteria: [
             {
@@ -70,29 +86,8 @@ function App() {
         return pairs;
     }
 
-    const perbandinganKriteria = generatePairs(hierarchyData.criteria);
-
-    const perbandinganAlternatif = generatePairs(hierarchyData.alternatives);
-    const allSubCriteria = hierarchyData.criteria.flatMap((criterion) =>
-        criterion.subCriteria.map((subCriterion) => ({
-            ...subCriterion,
-        }))
-    );
-
-    function handleRadioChange(event) {
-        const { name, value } = event.target;
-        setResponses((prevResponses) => ({
-            ...prevResponses,
-            [name]: value,
-        }));
-    }
-
-    function handleSelectChange(event) {
-        const { name, value } = event.target;
-        setResponses((prevResponses) => ({
-            ...prevResponses,
-            [name]: value,
-        }));
+    function handleLevelChange(newLevel) {
+        setLevel(newLevel + 1);
     }
 
     return (
@@ -101,26 +96,39 @@ function App() {
                 KUISIONER PEMILIHAN E-WALLET TERBAIK UNTUK TRANSAKSI DIGITAL
                 BAGI MAHASISWA
             </h1>
-            {/* <Level1 hierarchyData={hierarchyData} generatePairs={generatePairs}/> */}
-            <Level2
-                hierarchyData={hierarchyData}
-                generatePairs={generatePairs}
-            />
-            {/* <Level3
-                allSubCriteria={allSubCriteria}
-                hierarchyData={hierarchyData}
-                perbandinganAlternatif={perbandinganAlternatif}
-            /> */}
-            {/* {perbandinganSubKriteria.map((subPairs, index) => (
-                <div key={index}>
-                    <h2>{hierarchyData.criteria[index].name}</h2>
-                    {subPairs.map((pair, subIndex) => (
-                        <p key={subIndex}>
-                            {pair[0].name} vs {pair[1].name}
-                        </p>
-                    ))}
-                </div>
-            ))} */}
+            {level === 1 ? (
+                <Level1
+                    hierarchyData={hierarchyData}
+                    generatePairs={generatePairs}
+                    responsesLevel1={responsesLevel1}
+                    setResponsesLevel1={setResponsesLevel1}
+                />
+            ) : level === 2 ? (
+                <Level2
+                    hierarchyData={hierarchyData}
+                    generatePairs={generatePairs}
+                    responsesLevel2={responsesLevel2}
+                    setResponsesLevel2={setResponsesLevel2}
+                />
+            ) : level === 3 ? (
+                <Level3
+                    hierarchyData={hierarchyData}
+                    generatePairs={generatePairs}
+                    responsesLevel3={responsesLevel3}
+                    setResponsesLevel3={setResponsesLevel3}
+                />
+            ) : null}
+
+            <button
+                className="btn btn-primary mt-4"
+                onClick={() => handleLevelChange(level)}
+            >
+                {level === 1
+                    ? "Lanjut ke Level 2"
+                    : level === 2
+                    ? "Lanjut ke Level 3"
+                    : "Selesai"}
+            </button>
         </div>
     );
 }

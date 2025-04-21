@@ -1,18 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Options from "./Options";
 import Radios from "./Radios";
 
-export default function Level1({ generatePairs, hierarchyData }) {
-    const [responsesLevel1, setResponsesLevel1] = useState({
-        level: 1,
-        jawaban: [],
-    });
+export default function Level1({
+    generatePairs,
+    hierarchyData,
+    responsesLevel1,
+    setResponsesLevel1,
+}) {
     const perbandinganKriteria = generatePairs(hierarchyData.criteria);
 
     function handleRadioChange(index, value) {
         const update = [...responsesLevel1.jawaban];
         update[index] = {
             ...update[index],
+            pilihan: [
+                perbandinganKriteria[index][0].name,
+                perbandinganKriteria[index][1].name,
+            ],
+            tingkatKepentingan:
+                responsesLevel1.jawaban[index]?.tingkatKepentingan || 0,
             selected: value,
         };
         setResponsesLevel1((prev) => ({
