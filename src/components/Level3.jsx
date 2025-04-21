@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Options from "./Options";
 import Radios from "./Radios";
 
@@ -58,9 +58,6 @@ export default function Level3({ hierarchyData, generatePairs, responsesLevel3, 
         });
     }
 
-    useEffect(() => {
-        console.log(responsesLevel3);
-    }, [responsesLevel3]);
 
     return (
         <div className="overflow-x-auto rounded-box bg-base-100">

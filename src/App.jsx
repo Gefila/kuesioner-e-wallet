@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Level1 from "./components/Level1";
 import Level2 from "./components/Level2";
 import Level3 from "./components/Level3";
+import { webhookData } from "./assets/utils/webhookData";
 
 function App() {
     const [responses, setResponses] = useState([]);
@@ -90,6 +91,22 @@ function App() {
         setLevel(newLevel + 1);
     }
 
+    
+
+    function handleSubmit() {
+        const allResponses = [
+            { ...responsesLevel1, level: 1 },
+            { ...responsesLevel2, level: 2 },
+            { ...responsesLevel3, level: 3 },
+        ];
+        setResponses(allResponses);
+        
+    }
+
+    useEffect(() => {
+        console.log(webhookData())
+    }, []);
+
     return (
         <div className="container mx-auto p-4 ">
             <h1 className="text-3xl font-bold mb-4">
@@ -129,6 +146,14 @@ function App() {
                     ? "Lanjut ke Level 3"
                     : "Selesai"}
             </button>
+            {level === 4 && (
+                <button
+                    className="btn btn-success mt-4"
+                    onClick={handleSubmit}
+                >
+                    Kirim Jawaban
+                </button>
+            )}
         </div>
     );
 }

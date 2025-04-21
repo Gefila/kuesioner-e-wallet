@@ -55,10 +55,6 @@ export default function Level2({ hierarchyData, generatePairs, responsesLevel2, 
         });
     }
 
-    useEffect(() => {
-        console.log(responsesLevel2);
-    }, [responsesLevel2]);
-
     return (
         <div className="overflow-x-auto bg-base-100">
             <p>Level 2</p>

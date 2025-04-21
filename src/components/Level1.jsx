@@ -40,10 +40,6 @@ export default function Level1({
         }));
     }
 
-    useEffect(() => {
-        console.log(responsesLevel1);
-    }, [responsesLevel1]);
-
     return (
         <div className="overflow-x-auto rounded-box bg-base-100">
             <p>Level 1</p>
