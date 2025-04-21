@@ -75,6 +75,7 @@ export default function Level1({ generatePairs, hierarchyData }) {
                                     onChange={handleRadioChange}
                                     radio1={pair[0].name}
                                     radio2={pair[1].name}
+                                    name={`radio-${index}`}
                                 />
                             </td>
                             <td

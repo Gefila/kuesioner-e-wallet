@@ -4,11 +4,12 @@ export default function Options({
     element2,
     index,
     selectedElement,
+    subIndex=undefined,
 }) {
     let notSelectedElement = selectedElement === element1 ? element2 : element1;
     return (
         <select
-            onChange={(e) => onChange(index, e.target.value)}
+            onChange={(e) => onChange(index, e.target.value, subIndex)}
             className="select select-bordered w-full max-w-xs"
             disabled={selectedElement === undefined}
             defaultValue={"0"}

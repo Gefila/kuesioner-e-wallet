@@ -71,9 +71,7 @@ function App() {
     }
 
     const perbandinganKriteria = generatePairs(hierarchyData.criteria);
-    const perbandinganSubKriteria = hierarchyData.criteria.map((criterion) =>
-        generatePairs(criterion.subCriteria)
-    );
+
     const perbandinganAlternatif = generatePairs(hierarchyData.alternatives);
     const allSubCriteria = hierarchyData.criteria.flatMap((criterion) =>
         criterion.subCriteria.map((subCriterion) => ({
@@ -103,11 +101,11 @@ function App() {
                 KUISIONER PEMILIHAN E-WALLET TERBAIK UNTUK TRANSAKSI DIGITAL
                 BAGI MAHASISWA
             </h1>
-            <Level1 hierarchyData={hierarchyData} generatePairs={generatePairs}/>
-            {/* <Level2
+            {/* <Level1 hierarchyData={hierarchyData} generatePairs={generatePairs}/> */}
+            <Level2
                 hierarchyData={hierarchyData}
-                perbandinganSubKriteria={perbandinganSubKriteria}
-            /> */}
+                generatePairs={generatePairs}
+            />
             {/* <Level3
                 allSubCriteria={allSubCriteria}
                 hierarchyData={hierarchyData}

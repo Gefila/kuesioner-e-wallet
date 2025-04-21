@@ -1,15 +1,72 @@
+import { useEffect, useState } from "react";
 import Options from "./Options";
+import Radios from "./Radios";
 
-export default function Level2({ hierarchyData, perbandinganSubKriteria }) {
+export default function Level2({ hierarchyData, generatePairs }) {
+    const [responsesLevel2, setResponsesLevel2] = useState({
+        level: 2,
+        kriteria: [],
+    });
+
+    const perbandinganSubKriteria = hierarchyData.criteria.map((criterion) =>
+        generatePairs(criterion.subCriteria)
+    );
+
+    function handleRadioChange(index, value, subIndex) {
+        setResponsesLevel2((prev) => {
+            const updated = [...prev.kriteria];
+
+            if (!updated[index]) {
+                updated[index] = {
+                    kriteriaName: hierarchyData.criteria[index].name,
+                    jawaban: [],
+                };
+            }
+
+            const existingAnswer = updated[index].jawaban[subIndex] || {};
+            updated[index].jawaban[subIndex] = {
+                ...existingAnswer,
+                tingkatKepentingan: existingAnswer.tingkatKepentingan || 0,
+                selected: value,
+            };
+
+            return { ...prev, kriteria: updated };
+        });
+    }
+
+    function handleSelectChange(index, value, subIndex) {
+        setResponsesLevel2((prev) => {
+            const updated = [...prev.kriteria];
+
+            if (!updated[index]) {
+                updated[index] = {
+                    kriteriaName: hierarchyData.criteria[index].name,
+                    jawaban: [],
+                };
+            }
+
+            const existingAnswer = updated[index].jawaban[subIndex] || {};
+            updated[index].jawaban[subIndex] = {
+                ...existingAnswer,
+                tingkatKepentingan: parseInt(value),
+            };
+
+            return { ...prev, kriteria: updated };
+        });
+    }
+
+    useEffect(() => {
+        console.log(responsesLevel2);
+    }, [responsesLevel2]);
+
     return (
-        <div className="overflow-x-auto rounded-box border bg-base-100">
+        <div className="overflow-x-auto bg-base-100">
             <p>Level 2</p>
             {hierarchyData.criteria.map((criterion, index) => (
                 <div
                     key={index}
                     className="overflow-x-auto rounded-box border bg-base-100 mb-10"
                 >
-                    <p>{criterion.name}</p>
                     <table className="table table-auto">
                         <thead>
                             <tr className="text-white">
@@ -17,11 +74,7 @@ export default function Level2({ hierarchyData, perbandinganSubKriteria }) {
                                     colSpan={3}
                                     className="text-center border max-w-2xs whitespace-normal"
                                 >
-                                    Dalam menentukan e-Wallet Terbaik Untuk
-                                    Transaksi Digital Bagi Mahasiswa,
-                                    subkriteria manakah yang lebih penting
-                                    dibandingkan subkriteria-subkriteria berikut
-                                    ?
+                                    {`Berdasarkan kriteria "${criterion.name}", sub-kriteria manakah yang lebih penting dari perbandingan sub-kriteria – sub-kriteria berikut ?`}
                                 </th>
                                 <th className="border text-center">
                                     Berapa Tingkat Kepentingannya ?
@@ -32,28 +85,52 @@ export default function Level2({ hierarchyData, perbandinganSubKriteria }) {
                             {perbandinganSubKriteria[index].map(
                                 (pair, subIndex) => (
                                     <tr key={subIndex} className="text-center">
-                                        <td className="border">
+                                        <td
+                                            className={`border ${
+                                                responsesLevel2.kriteria[index]
+                                                    ?.jawaban[subIndex]
+                                                    ?.selected == pair[0].name
+                                                    ? "text-green-500"
+                                                    : ""
+                                            }`}
+                                        >
                                             {pair[0].name}
                                         </td>
                                         <td className="border">
-                                            <div className="flex justify-center items-center gap-5">
-                                                <input
-                                                    type="radio"
-                                                    name={`subkriteria-${index}-${subIndex}`}
-                                                    value="1"
-                                                />
-                                                <input
-                                                    type="radio"
-                                                    name={`subkriteria-${index}-${subIndex}`}
-                                                    value="1"
-                                                />
-                                            </div>
+                                            <Radios
+                                                index={index}
+                                                subIndex={subIndex}
+                                                onChange={handleRadioChange}
+                                                radio1={pair[0].name}
+                                                radio2={pair[1].name}
+                                                name={`radio-${index}-${subIndex}`}
+                                            />
                                         </td>
-                                        <td className="border">
+                                        <td
+                                            className={`border ${
+                                                responsesLevel2.kriteria[index]
+                                                    ?.jawaban[subIndex]
+                                                    ?.selected == pair[1].name
+                                                    ? "text-green-500"
+                                                    : ""
+                                            }`}
+                                        >
                                             {pair[1].name}
                                         </td>
                                         <td className="border">
-                                            <Options />
+                                            <Options
+                                                onChange={handleSelectChange}
+                                                index={index}
+                                                subIndex={subIndex}
+                                                element1={pair[0].name}
+                                                element2={pair[1].name}
+                                                selectedElement={
+                                                    responsesLevel2.kriteria[
+                                                        index
+                                                    ]?.jawaban[subIndex]
+                                                        ?.selected
+                                                }
+                                            />
                                         </td>
                                     </tr>
                                 )
