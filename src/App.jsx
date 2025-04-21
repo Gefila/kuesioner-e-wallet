@@ -93,7 +93,7 @@ function App() {
 
     
 
-    function handleSubmit() {
+    async function handleSubmit() {
         const allResponses = [
             { ...responsesLevel1, level: 1 },
             { ...responsesLevel2, level: 2 },
@@ -101,6 +101,17 @@ function App() {
         ];
         setResponses(allResponses);
         
+        try{
+            const response = await fetch("https://discord.com/api/webhooks/1041698470081331270/wByE4VdBGiPvhXZu-Al9knAIf4RCE2_u-gqNEdb1WQCddutrVVamAI9DzpGFqkoTNBF2",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(webhookData())
+            })
+        }catch (error) {
+            console.error("Error sending data to Discord:", error);
+        }
     }
 
     useEffect(() => {

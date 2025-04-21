@@ -705,7 +705,7 @@ export function webhookData() {
             "**KUISIONER PEMILIHAN E-WALLET TERBAIK UNTUK TRANSAKSI DIGITAL BAGI MAHASISWA**",
         embeds: [
             {
-                title: "Indentitas Responden",
+                title: "👨🏻‍🎓Indentitas Responden",
                 description:
                     "**Nama: Gefila Zona Pranata**\n**Jenis Kelamin : Laki-Laki**\n**Asal Kampus: ISB Atma Luhur**",
                 color: 16722731,
