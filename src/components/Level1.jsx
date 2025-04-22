@@ -79,6 +79,9 @@ export default function Level1({
                                     radio1={pair[0].name}
                                     radio2={pair[1].name}
                                     name={`radio-${index}`}
+                                    selected={
+                                        responsesLevel1.jawaban[index]?.selected
+                                    }
                                 />
                             </td>
                             <td

@@ -30,42 +30,41 @@ function App() {
                 subCriteria: [
                     { id: 1, name: "Proteksi Data Pengguna" },
                     { id: 2, name: "Keamanan Transaksi" },
-                    { id: 4, name: "Keamanan Saldo" },
+                    { id: 3, name: "Keamanan Saldo" },
                 ],
             },
             {
                 id: 2,
                 name: "Biaya",
                 subCriteria: [
-                    { id: 5, name: "Biaya Top Up" },
-                    { id: 6, name: "Biaya Transfer" },
+                    { id: 4, name: "Biaya Top Up" },
+                    { id: 5, name: "Biaya Transfer" },
                 ],
             },
             {
                 id: 3,
                 name: "Kemudahan Penggunaan",
                 subCriteria: [
-                    { id: 7, name: "UI & UX" },
-                    { id: 8, name: "Kemudahan Registrasi dan Verifikasi" },
-                    { id: 9, name: "Kecepatan Proses Transaksi" },
+                    { id: 6, name: "UI & UX" },
+                    { id: 7, name: "Kemudahan Registrasi dan Verifikasi" },
+                    { id: 8, name: "Kecepatan Proses Transaksi" },
                 ],
             },
             {
                 id: 4,
                 name: "Fitur",
                 subCriteria: [
-                    { id: 10, name: "QR & Scan To pay" },
-                    { id: 11, name: "Promo & Cashback" },
-                    { id: 12, name: "Kerjasama Dengan Merchant & E-Commerce" },
-                    { id: 13, name: "Kelengkapan Fitur" },
+                    { id: 9, name: "Promo & Cashback" },
+                    { id: 10, name: "Kerjasama Dengan Merchant & E-Commerce" },
+                    { id: 11, name: "Kelengkapan Fitur" },
                 ],
             },
             {
                 id: 5,
                 name: "Customer Service",
                 subCriteria: [
-                    { id: 14, name: "Responsivitas Layanan" },
-                    { id: 15, name: "Kualitas Penangan Masalah" },
+                    { id: 12, name: "Responsivitas Layanan" },
+                    { id: 13, name: "Kualitas Penangan Masalah" },
                 ],
             },
         ],
@@ -102,20 +101,25 @@ function App() {
         setResponses(allResponses);
         
         try{
-            const response = await fetch("https://discord.com/api/webhooks/1041698470081331270/wByE4VdBGiPvhXZu-Al9knAIf4RCE2_u-gqNEdb1WQCddutrVVamAI9DzpGFqkoTNBF2",{
+            const dataToSend = webhookData(allResponses);
+            const response = await fetch("https://discord.com/api/webhooks/1364130216716402738/d5JL6zJumhtMcle1VVknyA8Dv2uOEOhkMvy8GWLUVCbIQ__Omuto6Y1ckxw4ygam4TIv",{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(webhookData())
+                body: JSON.stringify(dataToSend),
             })
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
         }catch (error) {
             console.error("Error sending data to Discord:", error);
         }
     }
 
     useEffect(() => {
-        console.log(webhookData())
+
     }, []);
 
     return (
