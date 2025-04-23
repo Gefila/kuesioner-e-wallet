@@ -5,11 +5,15 @@ import Radios from "./Radios";
 export default function Level3({ hierarchyData, generatePairs, responsesLevel3, setResponsesLevel3 }) {
 
     const perbandinganAlternatif = generatePairs(hierarchyData.alternatives);
-    const allSubCriteria = hierarchyData.criteria.flatMap((criterion) =>
+    const kriteriaTunggal = hierarchyData.criteria.filter(
+        (criterion) => criterion.subCriteria.length === 0
+    );
+    const subCriteria = hierarchyData.criteria.flatMap((criterion) =>
         criterion.subCriteria.map((subCriterion) => ({
-            ...subCriterion,
+            ...subCriterion
         }))
     );
+    const allSubCriteria = [...subCriteria, ...kriteriaTunggal];
 
     function handleRadioChange(index, value, subIndex) {
         setResponsesLevel3((prev) => {
@@ -63,7 +67,7 @@ export default function Level3({ hierarchyData, generatePairs, responsesLevel3, 
         <div className="overflow-x-auto rounded-box bg-base-100">
             <p>Level 3</p>
             {allSubCriteria.map((subcriteria, index) => (
-                <table className="table table-auto mb-6" key={subcriteria.id}>
+                <table className="table table-auto mb-6" key={subcriteria.name}>
                     <thead>
                         <tr className="text-white">
                             <th
