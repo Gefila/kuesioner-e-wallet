@@ -97,6 +97,7 @@ export default function Level2({ hierarchyData, generatePairs, responsesLevel2, 
                                                 index={index}
                                                 subIndex={subIndex}
                                                 onChange={handleRadioChange}
+                                                selected={responsesLevel2.kriteria[index]?.jawaban[subIndex]?.selected}
                                                 radio1={pair[0].name}
                                                 radio2={pair[1].name}
                                                 name={`radio-${index}-${subIndex}`}

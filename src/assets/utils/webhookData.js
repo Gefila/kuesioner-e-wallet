@@ -1,5 +1,5 @@
 
-export function webhookData(data) {
+export function webhookData(data, indentitas) {
     const level1Value = data[0]?.jawaban.map((item) => {
         return  `${item.pilihan[0]} ${item.selected === item.pilihan[0] ? '🟢 🔴' : '🔴 🟢'} ${item.pilihan[1]} = ${item.tingkatKepentingan}`
         
@@ -32,9 +32,9 @@ export function webhookData(data) {
             {
                 title: "👨🏻‍🎓Indentitas Responden",
                 description:
-                    "**Nama: Gefila Zona Pranata**\n**Jenis Kelamin : Laki-Laki**\n**Asal Kampus: ISB Atma Luhur**",
+                    `**Nama: ${indentitas.nama}**\n**Jenis Kelamin : ${indentitas.jenisKelamin}**\n**Asal Kampus: ${indentitas.asalKampus}**`,
                 color: 16722731,
-                timestamp: `${new Date()}`,
+                timestamp: `${new Date().toISOString()}`,
             },
             {
                 title: "Level 1 - Perbandingan Kriteria",

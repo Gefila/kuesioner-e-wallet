@@ -3,10 +3,16 @@ import Level1 from "./components/Level1";
 import Level2 from "./components/Level2";
 import Level3 from "./components/Level3";
 import { webhookData } from "./assets/utils/webhookData";
+import FormIdentitas from "./components/FormIdentitas";
 
 function App() {
     const [responses, setResponses] = useState([]);
-    const [level, setLevel] = useState(1);
+    const [level, setLevel] = useState(0);
+    const [identitas, setIdentitas] = useState({
+        nama: "",
+        jenisKelamin: "",
+        asalKampus: "",
+    });
 
     const [responsesLevel1, setResponsesLevel1] = useState({
         level: 1,
@@ -22,6 +28,7 @@ function App() {
         level: 3,
         kriteria: [],
     });
+
     const [hierarchyData, setHierarchyData] = useState({
         criteria: [
             {
@@ -90,8 +97,6 @@ function App() {
         setLevel(newLevel + 1);
     }
 
-    
-
     async function handleSubmit() {
         const allResponses = [
             { ...responsesLevel1, level: 1 },
@@ -99,28 +104,29 @@ function App() {
             { ...responsesLevel3, level: 3 },
         ];
         setResponses(allResponses);
-        
-        try{
-            const dataToSend = webhookData(allResponses);
-            const response = await fetch("https://discord.com/api/webhooks/1364130216716402738/d5JL6zJumhtMcle1VVknyA8Dv2uOEOhkMvy8GWLUVCbIQ__Omuto6Y1ckxw4ygam4TIv",{
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(dataToSend),
-            })
 
+        try {
+            const dataToSend = webhookData(allResponses, identitas);
+            const response = await fetch(
+                "https://discord.com/api/webhooks/1364471453667295302/L9XQk1HxpksFWqqjVMQPtoCW-vD2ZzO-GR6GJuQyzbqusuktZBhlAZseqpbAiSV3IiAY",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(dataToSend),
+                }
+            );
+            console.log(dataToSend)
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
-        }catch (error) {
+        } catch (error) {
             console.error("Error sending data to Discord:", error);
         }
     }
 
-    useEffect(() => {
-
-    }, []);
+    useEffect(() => {}, []);
 
     return (
         <div className="container mx-auto p-4 ">
@@ -128,7 +134,9 @@ function App() {
                 KUISIONER PEMILIHAN E-WALLET TERBAIK UNTUK TRANSAKSI DIGITAL
                 BAGI MAHASISWA
             </h1>
-            {level === 1 ? (
+            {level === 0 ? (
+                <FormIdentitas identitas={identitas} setIdentitas={setIdentitas}/>
+            ) : level === 1 ? (
                 <Level1
                     hierarchyData={hierarchyData}
                     generatePairs={generatePairs}
@@ -155,17 +163,16 @@ function App() {
                 className="btn btn-primary mt-4"
                 onClick={() => handleLevelChange(level)}
             >
-                {level === 1
+                {level === 0
+                    ? "Mulai Kuisioner"
+                    : level === 1
                     ? "Lanjut ke Level 2"
                     : level === 2
                     ? "Lanjut ke Level 3"
                     : "Selesai"}
             </button>
             {level === 4 && (
-                <button
-                    className="btn btn-success mt-4"
-                    onClick={handleSubmit}
-                >
+                <button className="btn btn-success mt-4" onClick={handleSubmit}>
                     Kirim Jawaban
                 </button>
             )}

@@ -99,6 +99,7 @@ export default function Level3({ hierarchyData, generatePairs, responsesLevel3, 
                                             radio1={alternatif[0].name}
                                             radio2={alternatif[1].name}
                                             name={`radio-${index}-${subIndex}`}
+                                            selected={responsesLevel3.kriteria[index]?.jawaban[subIndex]?.selected}
                                         />
                                     </div>
                                 </td>
