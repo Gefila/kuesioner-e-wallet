@@ -34,44 +34,113 @@ function App() {
             {
                 id: 1,
                 name: "Keamanan",
+                penjelasan:
+                    "Mengacu kepada perlindungan akun, data pribadi, dan keuangan yang ada pada e-wallet.",
                 subCriteria: [
-                    { id: 1, name: "Proteksi Data Pengguna" },
-                    { id: 2, name: "Keamanan Transaksi" },
-                    { id: 3, name: "Keamanan Saldo" },
+                    {
+                        id: 1,
+                        name: "Proteksi Data Pengguna",
+                        penjelasan:
+                            "Adanya perlindungan data pribadi pengguna dari perusahaan e-wallet tersebut. Misalnya pin atau keamanan biometrik untuk login dan membuka aplikasi, sensor untuk nomor telfon, nama lengkap, jumlah saldo, enkripsi data, kebijakan privasi, izin aplikasi, dll.",
+                    },
+                    {
+                        id: 2,
+                        name: "Keamanan Saldo",
+                        penjelasan:
+                            "Seberapa aman saldo yang disimpan pada e-wallet tersebut. Misalnya terjamin dari kehilangan saldo tiba-tiba tanpa alasan yang jelas meskipun e wallet lama tidak dipakai. ",
+                    },
                 ],
             },
             {
                 id: 2,
                 name: "Biaya",
+                penjelasan:
+                    "Merujuk pada segala biaya yang dikenakan kepada pengguna saat menggunakan e-wallet. Bisa berupa biaya transfer ke bank, biaya top-up, biaya penarikan tunai, atau potongan untuk transaksi tertentu.",
                 subCriteria: [
-                    { id: 4, name: "Biaya Top Up" },
-                    { id: 5, name: "Biaya Transfer" },
+                    {
+                        id: 3,
+                        name: "Biaya Top Up",
+                        penjelasan:
+                            "Biaya admin ketika mengisi saldo e-wallet dari bank atau metode lain misal melalui merchant, minimarket, dll. ",
+                    },
+                    {
+                        id: 4,
+                        name: "Biaya Transfer",
+                        penjelasan:
+                            "Biaya admin yang dikenakan kepada pengguna ketika transfer saldo dari e-wallet ke rekening bank, ke sesama e-wallet yang sama atau berbeda perusahaan, atau ketika membayar transaksi digital di merchant atau online shop.  ",
+                    },
                 ],
             },
             {
                 id: 3,
                 name: "Kemudahan Penggunaan",
+                penjelasan:
+                    "Mengacu pada kemudahan aplikasi e-wallet tersebut digunakan. Menu dan fitur yang diberikan mudah untuk dipelajari dan dimengerti.",
                 subCriteria: [
-                    { id: 6, name: "UI & UX" },
-                    { id: 7, name: "Kemudahan Registrasi dan Verifikasi" },
-                    { id: 8, name: "Kecepatan Proses Transaksi" },
+                    {
+                        id: 6,
+                        name: "UI & UX",
+                        penjelasan:
+                            "UI adalah tampilan atau design aplikasi e-wallet seperti warna, penempatan menu, tombol, tulisan, dll. UX adalah pengalaman pengguna dalam memakai aplikasi yang mudah aplikasi dipelajari, dipahami, dan digunakan. ",
+                    },
+                    {
+                        id: 7,
+                        name: "Kemudahan Registrasi dan Verifikasi",
+                        penjelasan:
+                            "Proses pendaftaran akun e-wallet untuk pengguna baru dan upgrade akun ke versi premium atau plus untuk mendapatkan fitur dan limit saldo tambahan. ",
+                    },
+                    {
+                        id: 8,
+                        name: "Kecepatan Proses Transaksi",
+                        penjelasan:
+                            "Kecepatan e-wallet ketika melakukan transaksi seperti top up saldo, pembayaran via scan QR-code/ QRIS, pembayaran e-commerce via transfer ke bank, ataupun transfer antara pengguna e-wallet yang sama atau berbeda aplikasi. ",
+                    },
                 ],
             },
             {
                 id: 4,
                 name: "Fitur",
+                penjelasan:
+                    "Mencakup kelengkapan layanan yang ditawarkan oleh e-wallet untuk memberikan nilai tambah dan meningkatkan kenyamanan pengguna dalam berbagai transaksi. Termasuk juga kerja sama dengan berbagai perusahaan dan e-commerce.",
                 subCriteria: [
-                    { id: 9, name: "Promo & Cashback" },
-                    { id: 10, name: "Kerjasama Dengan Merchant & E-Commerce" },
-                    { id: 11, name: "Kelengkapan Fitur" },
+                    {
+                        id: 9,
+                        name: "Promo & Cashback",
+                        penjelasan:
+                            "Penawaran menarik yang ditawarkan e-wallet seperti diskon, cashback, poin reward, free biaya transfer, dsb. ",
+                    },
+                    {
+                        id: 10,
+                        name: "Kerjasama Dengan Merchant & E-Commerce",
+                        penjelasan:
+                            "Perusahaan e-wallet bekerja sama dengan merchant, online shop, atau minimarket tertentu agar pengguna dapat langsung melakukan pembayaran menggunakan e-wallet tersebut. ",
+                    },
+                    {
+                        id: 11,
+                        name: "Kelengkapan Fitur",
+                        penjelasan:
+                            "Ketersediaan Fitur-fitur atau layanan tertentu pada aplikasi e-wallet untuk menunjang kenyamanan dan fleksibilitas pengguna dalam bertransaksi. Seperti fitur top up untuk kebutuhan sehari hari seperti pulsa, paket data, token listrik, dll. ",
+                    },
                 ],
             },
             {
                 id: 5,
                 name: "Customer Service",
+                penjelasan:
+                    "Kualitas dukungan dan layanan bantuan yang diberikan oleh penyedia e-wallet kepada penggunanya, khususnya ketika mengalami kendala.",
                 subCriteria: [
-                    { id: 12, name: "Responsivitas Layanan" },
-                    { id: 13, name: "Kualitas Penangan Masalah" },
+                    {
+                        id: 12,
+                        name: "Responsivitas Layanan",
+                        penjelasan:
+                            "Kecepatan dan kesigapan customer service dalam merespon keluhan atau pertanyaan pengguna baik melalui live chat, email, panggilan telpon, dll",
+                    },
+                    {
+                        id: 13,
+                        name: "Kualitas Penangan Masalah",
+                        penjelasan:
+                            "Kualitas jawaban yang diberikan untuk menyelesaikan masalah apakah tepat dan dapat membantu menyelesaikan masalah pelanggan. Kemampuan customer service dan sistem menyelesaikan masalah seperti transaksi yang gagal, saldo tertahan, atau permintaan refund. ",
+                    },
                 ],
             },
         ],
@@ -117,7 +186,7 @@ function App() {
                     body: JSON.stringify(dataToSend),
                 }
             );
-            console.log(dataToSend)
+            console.log(dataToSend);
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
@@ -135,7 +204,10 @@ function App() {
                 BAGI MAHASISWA
             </h1>
             {level === 0 ? (
-                <FormIdentitas identitas={identitas} setIdentitas={setIdentitas}/>
+                <FormIdentitas
+                    identitas={identitas}
+                    setIdentitas={setIdentitas}
+                />
             ) : level === 1 ? (
                 <Level1
                     hierarchyData={hierarchyData}

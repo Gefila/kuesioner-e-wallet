@@ -63,6 +63,9 @@ export default function Level2({ hierarchyData, generatePairs, responsesLevel2, 
                     key={index}
                     className="overflow-x-auto rounded-box border bg-base-100 mb-10"
                 >
+                    <p className="text-center text-lg font-bold">
+                        {`${criterion.penjelasan}`}
+                    </p>
                     <table className="table table-auto">
                         <thead>
                             <tr className="text-white">
