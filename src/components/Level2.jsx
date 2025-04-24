@@ -59,7 +59,8 @@ export default function Level2({ hierarchyData, generatePairs, responsesLevel2, 
         <div className="overflow-x-auto bg-base-100">
             <p>Level 2</p>
             {hierarchyData.criteria.map((criterion, index) => (
-                <div
+                criterion.subCriteria.length > 0 ? (
+                    <div
                     key={index}
                     className="overflow-x-auto rounded-box border bg-base-100 mb-10"
                 >
@@ -81,7 +82,7 @@ export default function Level2({ hierarchyData, generatePairs, responsesLevel2, 
                             </tr>
                         </thead>
                         <tbody>
-                            {perbandinganSubKriteria[index].map(
+                            {perbandinganSubKriteria[index]?.map(
                                 (pair, subIndex) => (
                                     <tr key={subIndex} className="text-center">
                                         <td
@@ -138,6 +139,7 @@ export default function Level2({ hierarchyData, generatePairs, responsesLevel2, 
                         </tbody>
                     </table>
                 </div>
+                ) : null
             ))}
         </div>
     );

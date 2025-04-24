@@ -12,7 +12,7 @@ export default function FormIdentitas({ identitas, setIdentitas }) {
                 <div className="mb-4">
                     <label
                         htmlFor="name"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-white"
                     >
                         Nama Lengkap
                     </label>
@@ -29,7 +29,7 @@ export default function FormIdentitas({ identitas, setIdentitas }) {
                 <div className="mb-4">
                     <label
                         htmlFor="nim"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-white"
                     >
                         Jenis Kelamin
                     </label>
@@ -55,7 +55,7 @@ export default function FormIdentitas({ identitas, setIdentitas }) {
                 <div className="mb-4">
                     <label
                         htmlFor="asalKampus"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-white"
                     >
                         Asal Kampus
                     </label>

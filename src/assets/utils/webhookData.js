@@ -5,6 +5,8 @@ export function webhookData(data, indentitas) {
         
     });
 
+    console.log(data)
+
     const level2 = data[1]?.kriteria.map((item) => {
         const value = item.jawaban.map((subItem) => {   
             return `${subItem.pilihan[0]} ${subItem.selected === subItem.pilihan[0] ? '🟢 🔴' : '🔴 🟢'} ${subItem.pilihan[1]} = ${subItem.tingkatKepentingan}`

@@ -141,11 +141,16 @@ function App() {
     }
 
     async function handleSubmit() {
+        const filterResponsesLevel2 = {
+            ...responsesLevel2,
+            kriteria: responsesLevel2.kriteria.filter(item => item !== undefined)
+        }
         const allResponses = [
             { ...responsesLevel1, level: 1 },
-            { ...responsesLevel2, level: 2 },
+            { ...filterResponsesLevel2, level: 2 },
             { ...responsesLevel3, level: 3 },
         ];
+        console.log("allResponses", allResponses);
         setResponses(allResponses);
 
         try {
