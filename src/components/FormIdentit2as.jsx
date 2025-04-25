@@ -1,0 +1,69 @@
+import { InputWithLabel } from "./InputWithLabel";
+
+export default function FormIdentitaxxs({ identitas, setIdentitas }) {
+    function handleOnChange(e) {
+        const { name, value } = e.target;
+        setIdentitas((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    }
+    return (
+        <div className="container mx-auto p-4 ">
+            <form className="space-y-4">
+                <div className="mb-4">
+                    <InputWithLabel
+                        label="Nama Lengkap"
+                        id="namaLengkap"
+                        required
+                        value={identitas?.namaLengkap}
+                        onChange={handleOnChange}
+                    />
+                </div>
+                <div className="mb-4">
+                    <label
+                        htmlFor="nim"
+                        className="block text-sm font-medium text-white"
+                    >
+                        Jenis Kelamin
+                    </label>
+                    <select
+                        id="jenisKelamin"
+                        name="jenisKelamin"
+                        required
+                        value={
+                            identitas?.jenisKelamin
+                                ? identitas.jenisKelamin
+                                : ""
+                        }
+                        onChange={handleOnChange}
+                        className="input"
+                    >
+                        <option value="" disabled>
+                            Pilih Jenis Kelamin
+                        </option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                </div>
+                <div className="mb-4">
+                    <label
+                        htmlFor="asalKampus"
+                        className="block text-sm font-medium text-white"
+                    >
+                        Asal Kampus
+                    </label>
+                    <input
+                        type="asalKampus"
+                        id="asalKampus"
+                        name="asalKampus"
+                        required
+                        value={identitas?.asalKampus}
+                        onChange={handleOnChange}
+                        className="input"
+                    />
+                </div>
+            </form>
+        </div>
+    );
+}
