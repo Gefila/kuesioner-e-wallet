@@ -1,7 +1,9 @@
-import Radios from "./Radios";
-import { Card } from "./ui/card";
-import { Button } from "./ui/button";
-import SelectKepentingan from "./SelectKepentingan";
+import Radios from "../Radios";
+import { Card } from "../ui/card";
+import { Button } from "../ui/button";
+import SelectKepentingan from "../SelectKepentingan";
+import { useEffect, useState } from "react";
+import DialogPetunjuk from "../DialogPetunjuk";
 
 export default function Level1({
     generatePairs,
@@ -11,6 +13,7 @@ export default function Level1({
     handleLevelChange,
 }) {
     const perbandinganKriteria = generatePairs(hierarchyData.criteria);
+    const [isOpenModal, setIsOpenModal] = useState(true);
 
     function handleRadioChange(index, value) {
         const update = [...responsesLevel1.jawaban];
@@ -51,11 +54,26 @@ export default function Level1({
         );
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        document.title = "Kuesioner E-Wallet - Level 1";
+    }, []);
+
     return (
         <div className="overflow-x-auto p-5 flex flex-col items-center">
-            <Button className="pointer-events-none self-start" variant="neutral">
-                LEVEL 1 : PERBANDINGAN KRITERIA
-            </Button>
+            <div className="flex justify-between w-full max-w-7xl mx-auto">
+                <Button
+                    className="pointer-events-none self-start"
+                    variant="neutral"
+                >
+                    LEVEL 1 : PERBANDINGAN KRITERIA
+                </Button>
+                <DialogPetunjuk
+                    isOpenModal={isOpenModal}
+                    setIsOpenModal={setIsOpenModal}
+                />
+            </div>
+
             <Card className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white">
                 <table className="table table-auto">
                     <thead>

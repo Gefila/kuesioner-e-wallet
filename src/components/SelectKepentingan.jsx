@@ -23,19 +23,19 @@ export default function SelectKepentingan({
             <option value="1">
                 {`1 - ${selectedElement} dan ${notSelectedElement} Sama Penting`}
             </option>
-            <option value="2">2</option>
+            <option value="2">2 - diantara 1 dan 3</option>
             <option value="3">
                 {`3 - ${selectedElement} sedikit lebih penting daripada ${notSelectedElement}`}
             </option>
-            <option value="4">4</option>
+            <option value="4">4 - diantara 3 dan 5</option>
             <option value="5">
                 {`5 - ${selectedElement} lebih penting daripada ${notSelectedElement}`}
             </option>
-            <option value="6">6</option>
+            <option value="6">6 - diantara 5 dan 7</option>
             <option value="7">
                 {`7 - ${selectedElement} jelas sangat penting daripada ${notSelectedElement}`}
             </option>
-            <option value="8">8</option>
+            <option value="8">8 - diantara 7 dan 9</option>
             <option value="9">
                 {`9 - ${selectedElement} mutlak sangat penting daripada ${notSelectedElement}`}
             </option>

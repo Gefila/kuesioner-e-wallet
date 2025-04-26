@@ -1,7 +1,9 @@
-import Radios from "./Radios";
-import SelectKepentingan from "./SelectKepentingan";
-import { Button } from "./ui/button";
-import { Card } from "./ui/card";
+import { useEffect, useState } from "react";
+import Radios from "../Radios";
+import SelectKepentingan from "../SelectKepentingan";
+import { Button } from "../ui/button";
+import { Card } from "../ui/card";
+import DialogPetunjuk from "../DialogPetunjuk";
 
 export default function Level3({
     hierarchyData,
@@ -10,6 +12,7 @@ export default function Level3({
     setResponsesLevel3,
     handleSubmit,
 }) {
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const perbandinganAlternatif = generatePairs(hierarchyData.alternatives);
     const kriteriaTunggal = hierarchyData.criteria.filter(
         (criterion) => criterion.subCriteria.length === 0
@@ -79,16 +82,22 @@ export default function Level3({
             ) && subKriteriaCount == responsesLevel3.kriteria.length
         );
     }
-    console.log(isAllFilled());
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        document.title = "Kuesioner E-Wallet - Level 3";
+    }, []);
 
     return (
         <div className="overflow-x-auto p-5 flex flex-col items-center">
-            <Button
-                className="pointer-events-none self-start"
-                variant="neutral"
-            >
-                LEVEL 3 : PERBANDINGAN ALTERNATIF STRATEGIS
-            </Button>
+            <div className="flex justify-between w-full max-w-7xl mx-auto">
+                <Button
+                    className="pointer-events-none self-start"
+                    variant="neutral"
+                >
+                    LEVEL 3 : PERBANDINGAN ALTERNATIF STRATEGIS
+                </Button>
+                <DialogPetunjuk />
+            </div>
             {allSubCriteria.map((subcriteria, index) => (
                 <Card
                     key={index}

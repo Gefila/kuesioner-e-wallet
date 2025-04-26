@@ -1,7 +1,9 @@
-import Radios from "./Radios";
-import { Button } from "./ui/button";
-import { Card } from "./ui/card";
-import SelectKepentingan from "./SelectKepentingan";
+import Radios from "../Radios";
+import { Button } from "../ui/button";
+import { Card } from "../ui/card";
+import SelectKepentingan from "../SelectKepentingan";
+import { useEffect, useState } from "react";
+import DialogPetunjuk from "../DialogPetunjuk";
 
 export default function Level2({
     hierarchyData,
@@ -10,6 +12,7 @@ export default function Level2({
     setResponsesLevel2,
     handleLevelChange,
 }) {
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const perbandinganSubKriteria = hierarchyData.criteria.map((criterion) =>
         generatePairs(criterion.subCriteria)
     );
@@ -74,14 +77,22 @@ export default function Level2({
         );
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        document.title = "Kuesioner E-Wallet - Level 2";
+    }, []);
+
     return (
         <div className="overflow-x-auto p-5 flex flex-col items-center">
-            <Button
-                className="pointer-events-none self-start"
-                variant="neutral"
-            >
-                LEVEL 2 : PERBANDINGAN SUB-KRITERIA
-            </Button>
+            <div className="flex justify-between w-full max-w-7xl mx-auto">
+                <Button
+                    className="pointer-events-none self-start"
+                    variant="neutral"
+                >
+                    LEVEL 2 : PERBANDINGAN SUB-KRITERIA
+                </Button>
+                <DialogPetunjuk />
+            </div>
             {hierarchyData.criteria.map((criterion, index) =>
                 criterion.subCriteria.length > 0 ? (
                     <Card

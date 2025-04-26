@@ -38,7 +38,7 @@ export default function FormIdentitas({
     return (
         <Card className="w-[650px] bg-secondary-background">
             <CardHeader>
-                <CardTitle className="text-center">
+                <CardTitle className="text-center text-2xl">
                     KUISIONER PEMILIHAN E-WALLET TERBAIK UNTUK TRANSAKSI DIGITAL
                     BAGI MAHASISWA
                 </CardTitle>

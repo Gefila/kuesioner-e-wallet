@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Level1 from "./components/Level1";
-import Level2 from "./components/Level2";
-import Level3 from "./components/Level3";
+import Level1 from "./components/pages/Level1Page";
+import Level2 from "./components/pages/Level2Page";
+import Level3 from "./components/pages/Level3Page";
 import { webhookData } from "./assets/utils/webhookData";
 import FormIdentitas from "./components/FormIdentitas";
-import { Button } from "./components/ui/button";
+import DialogPetunjuk from "./components/DialogPetunjuk";
 
 function App() {
     const [responses, setResponses] = useState([]);
@@ -36,19 +36,19 @@ function App() {
                 id: 1,
                 name: "Keamanan",
                 penjelasan:
-                    "Mengacu kepada perlindungan akun, data pribadi, dan keuangan yang ada pada e-wallet.",
+                    "Keamanan, Mengacu kepada perlindungan akun, data pribadi, dan keuangan yang ada pada e-wallet.",
                 subCriteria: [
                     {
                         id: 1,
                         name: "Proteksi Data Pengguna",
                         penjelasan:
-                            "Adanya perlindungan data pribadi pengguna dari perusahaan e-wallet tersebut. Misalnya pin atau keamanan biometrik untuk login dan membuka aplikasi, sensor untuk nomor telfon, nama lengkap, jumlah saldo, enkripsi data, kebijakan privasi, izin aplikasi, dll.",
+                            "Proteksi Data Pengguna, Adanya perlindungan data pribadi pengguna dari perusahaan e-wallet tersebut. Misalnya pin atau keamanan biometrik untuk login dan membuka aplikasi, sensor untuk nomor telfon, nama lengkap, jumlah saldo, enkripsi data, kebijakan privasi, izin aplikasi, dll.",
                     },
                     {
                         id: 2,
                         name: "Keamanan Saldo",
                         penjelasan:
-                            "Seberapa aman saldo yang disimpan pada e-wallet tersebut. Misalnya terjamin dari kehilangan saldo tiba-tiba tanpa alasan yang jelas meskipun e wallet lama tidak dipakai. ",
+                            "Keamanan Saldo, Seberapa aman saldo yang disimpan pada e-wallet tersebut. Misalnya terjamin dari kehilangan saldo tiba-tiba tanpa alasan yang jelas meskipun e wallet lama tidak dipakai. ",
                     },
                 ],
             },
@@ -56,25 +56,25 @@ function App() {
                 id: 2,
                 name: "Kemudahan Penggunaan",
                 penjelasan:
-                    "Mengacu pada kemudahan aplikasi e-wallet tersebut digunakan. Menu dan fitur yang diberikan mudah untuk dipelajari dan dimengerti.",
+                    "Kemudahan Penggunaan, Mengacu pada kemudahan aplikasi e-wallet tersebut digunakan. Menu dan fitur yang diberikan mudah untuk dipelajari dan dimengerti.",
                 subCriteria: [
                     {
                         id: 3,
                         name: "UI & UX",
                         penjelasan:
-                            "UI adalah tampilan atau design aplikasi e-wallet seperti warna, penempatan menu, tombol, tulisan, dll. UX adalah pengalaman pengguna dalam memakai aplikasi yang mudah aplikasi dipelajari, dipahami, dan digunakan. ",
+                            "UI & UX, UI adalah tampilan atau design aplikasi e-wallet seperti warna, penempatan menu, tombol, tulisan, dll. UX adalah pengalaman pengguna dalam memakai aplikasi yang mudah aplikasi dipelajari, dipahami, dan digunakan. ",
                     },
                     {
                         id: 4,
                         name: "Kemudahan Registrasi dan Verifikasi",
                         penjelasan:
-                            "Proses pendaftaran akun e-wallet untuk pengguna baru dan upgrade akun ke versi premium atau plus untuk mendapatkan fitur dan limit saldo tambahan. ",
+                            "Kemudahan Registrasi dan Verifikasi, Proses pendaftaran akun e-wallet untuk pengguna baru dan upgrade akun ke versi premium atau plus untuk mendapatkan fitur dan limit saldo tambahan. ",
                     },
                     {
                         id: 5,
                         name: "Kecepatan Proses Transaksi",
                         penjelasan:
-                            "Kecepatan e-wallet ketika melakukan transaksi seperti top up saldo, pembayaran via scan QR-code/ QRIS, pembayaran e-commerce via transfer ke bank, ataupun transfer antara pengguna e-wallet yang sama atau berbeda aplikasi. ",
+                            "Kecepatan Proses Transaksi, Kecepatan e-wallet ketika melakukan transaksi seperti top up saldo, pembayaran via scan QR-code/ QRIS, pembayaran e-commerce via transfer ke bank, ataupun transfer antara pengguna e-wallet yang sama atau berbeda aplikasi. ",
                     },
                 ],
             },
@@ -82,25 +82,25 @@ function App() {
                 id: 3,
                 name: "Fitur",
                 penjelasan:
-                    "Mencakup kelengkapan layanan yang ditawarkan oleh e-wallet untuk memberikan nilai tambah dan meningkatkan kenyamanan pengguna dalam berbagai transaksi. Termasuk juga kerja sama dengan berbagai perusahaan dan e-commerce.",
+                    "Fitur, Mencakup kelengkapan layanan yang ditawarkan oleh e-wallet untuk memberikan nilai tambah dan meningkatkan kenyamanan pengguna dalam berbagai transaksi. Termasuk juga kerja sama dengan berbagai perusahaan dan e-commerce.",
                 subCriteria: [
                     {
                         id: 6,
                         name: "Promo & Cashback",
                         penjelasan:
-                            "Penawaran menarik yang ditawarkan e-wallet seperti diskon, cashback, poin reward, free biaya transfer, dsb. ",
+                            "Promo & Cashback, Penawaran menarik yang ditawarkan e-wallet seperti diskon, cashback, poin reward, free biaya transfer, dsb. ",
                     },
                     {
                         id: 7,
                         name: "Kerjasama Dengan Merchant & E-Commerce",
                         penjelasan:
-                            "Perusahaan e-wallet bekerja sama dengan merchant, online shop, atau minimarket tertentu agar pengguna dapat langsung melakukan pembayaran menggunakan e-wallet tersebut. ",
+                            "Kerjasama Dengan Merchant & E-Commerce, Perusahaan e-wallet bekerja sama dengan merchant, online shop, atau minimarket tertentu agar pengguna dapat langsung melakukan pembayaran menggunakan e-wallet tersebut. ",
                     },
                     {
                         id: 8,
                         name: "Kelengkapan Fitur",
                         penjelasan:
-                            "Ketersediaan Fitur-fitur atau layanan tertentu pada aplikasi e-wallet untuk menunjang kenyamanan dan fleksibilitas pengguna dalam bertransaksi. Seperti fitur top up untuk kebutuhan sehari hari seperti pulsa, paket data, token listrik, dll. ",
+                            "Kelengkapan Fitur, Ketersediaan Fitur-fitur atau layanan tertentu pada aplikasi e-wallet untuk menunjang kenyamanan dan fleksibilitas pengguna dalam bertransaksi. Seperti fitur top up untuk kebutuhan sehari hari seperti pulsa, paket data, token listrik, dll. ",
                     },
                 ],
             },
@@ -108,14 +108,14 @@ function App() {
                 id: 4,
                 name: "Biaya Admin",
                 penjelasan:
-                    "Merujuk pada segala biaya yang dikenakan kepada pengguna saat menggunakan e-wallet. Bisa berupa biaya transfer ke bank, biaya top-up, biaya penarikan tunai, atau potongan untuk transaksi tertentu.",
+                    "Biaya Admin, Merujuk pada segala biaya yang dikenakan kepada pengguna saat menggunakan e-wallet. Bisa berupa biaya transfer ke bank, biaya top-up, biaya penarikan tunai, atau potongan untuk transaksi tertentu.",
                 subCriteria: [],
             },
             {
                 id: 5,
                 name: "Customer Service",
                 penjelasan:
-                    "Kualitas dukungan dan layanan bantuan yang diberikan oleh penyedia e-wallet kepada penggunanya, khususnya ketika mengalami kendala.",
+                    "Customer Service, Kualitas dukungan dan layanan bantuan yang diberikan oleh penyedia e-wallet kepada penggunanya, khususnya ketika mengalami kendala.",
                 subCriteria: [],
             },
         ],
@@ -153,7 +153,6 @@ function App() {
             { ...filterResponsesLevel2, level: 2 },
             { ...responsesLevel3, level: 3 },
         ];
-        console.log("allResponses", allResponses);
         setResponses(allResponses);
 
         try {
@@ -175,13 +174,32 @@ function App() {
         } catch (error) {
             console.error("Error sending data to Discord:", error);
         }
+
+        setLevel(0);
+        setIdentitas({
+            nama: "",
+            jenisKelamin: "",
+            asalKampus: "",
+        });
+        setResponsesLevel1({
+            level: 1,
+            jawaban: [],
+        });
+        setResponsesLevel2({
+            level: 2,
+            kriteria: [],
+        });
+        setResponsesLevel3({
+            level: 3,
+            kriteria: [],
+        });
     }
 
     useEffect(() => {}, []);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-4 relative">
-            <div class="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px]"></div>
+            <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px]"></div>
             {level === 0 ? (
                 <FormIdentitas
                     identitas={identitas}
