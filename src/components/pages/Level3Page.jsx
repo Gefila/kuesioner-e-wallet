@@ -1,13 +1,18 @@
-import { useEffect } from "react";
-import Options from "./Options";
-import Radios from "./Radios";
+import { useEffect, useState } from "react";
+import Radios from "../Radios";
+import SelectKepentingan from "../SelectKepentingan";
+import { Button } from "../ui/button";
+import { Card } from "../ui/card";
+import DialogPetunjuk from "../DialogPetunjuk";
 
 export default function Level3({
     hierarchyData,
     generatePairs,
     responsesLevel3,
     setResponsesLevel3,
+    handleSubmit,
 }) {
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const perbandinganAlternatif = generatePairs(hierarchyData.alternatives);
     const kriteriaTunggal = hierarchyData.criteria.filter(
         (criterion) => criterion.subCriteria.length === 0
@@ -43,6 +48,7 @@ export default function Level3({
 
             return { ...prev, kriteria: updated };
         });
+        console.log(responsesLevel3);
     }
 
     function handleSelectChange(index, value, subIndex) {
@@ -66,33 +72,61 @@ export default function Level3({
         });
     }
 
+    function isAllFilled() {
+        const subKriteriaCount = allSubCriteria.length;
+        return (
+            responsesLevel3.kriteria.every((kriteria) =>
+                kriteria.jawaban.every(
+                    (jawaban) => jawaban.tingkatKepentingan !== 0
+                )
+            ) && subKriteriaCount == responsesLevel3.kriteria.length
+        );
+    }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        document.title = "Kuesioner E-Wallet - Level 3";
+    }, []);
+
     return (
-        <div className="overflow-x-auto rounded-box bg-base-100">
-            <p>Level 3</p>
-            {allSubCriteria.map((subcriteria, index) => (
-                <div
-                    key={index}
-                    className="overflow-x-auto border rounded-box bg-base-100 mb-10"
+        <div className="overflow-x-auto p-5 flex flex-col items-center w-full max-md:p-2">
+            <div className="flex justify-between w-full max-w-7xl mx-auto max-md:max-w-[100%]">
+                <Button
+                    className="pointer-events-none self-start"
+                    variant="neutral"
                 >
-                    <p className="text-center text-lg font-bold">
-                        {`${subcriteria.penjelasan}`}
-                    </p>
-                    <table
-                        className="table table-auto"
-                        key={subcriteria.name}
-                    >
+                    <span className="max-md:hidden">
+                        LEVEL 3 : PERBANDINGAN ALTERNATIF STRATEGIS
+                    </span>
+                    LEVEL 3
+                </Button>
+                <DialogPetunjuk
+                    isOpenModal={isOpenModal}
+                    setIsOpenModal={setIsOpenModal}
+                />
+            </div>
+            {allSubCriteria.map((subcriteria, index) => (
+                <Card
+                    key={index}
+                    className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white max-md:max-w-[100%] max-md:text-xs"
+                >
+                    <Card>
+                        <p className="text-center text-lg font-bold px-1 max-md:text-xs">
+                            {`${subcriteria.penjelasan}`}
+                        </p>
+                    </Card>
+                    <table className="table table-auto" key={subcriteria.name}>
                         <thead>
-                            <tr className="text-white">
+                            <tr className="text-black bg-main">
                                 <th
                                     colSpan={3}
-                                    className="text-center border max-w-2xs whitespace-normal"
+                                    className="text-center border-2 w-[65%] whitespace-normal p-4 max-md:p-1"
                                 >
                                     Berdasarkan sub-kriteria "{subcriteria.name}
                                     ", dalam menentukan , alternatif strategis
                                     manakah yang lebih penting dari perbandingan
                                     alternatif-alternatif strategis berikut ini?
                                 </th>
-                                <th className="border text-center">
+                                <th className="border-2 text-center max-md:p-1">
                                     Berapa Tingkat Kepentingannya ?
                                 </th>
                             </tr>
@@ -100,21 +134,27 @@ export default function Level3({
                         <tbody>
                             {perbandinganAlternatif.map(
                                 (alternatif, subIndex) => (
-                                    <tr key={subIndex} className="text-center">
-                                        <td
-                                            className={`border ${
-                                                responsesLevel3.kriteria[index]
-                                                    ?.jawaban[subIndex]
-                                                    ?.selected ==
-                                                alternatif[0].name
-                                                    ? "text-green-500"
-                                                    : ""
-                                            }`}
-                                        >
-                                            {alternatif[0].name}
+                                    <tr
+                                        key={subIndex}
+                                        className="text-center bg-background"
+                                    >
+                                        <td className={`border-2 p-4 max-md:p-1`}>
+                                            <p
+                                                className={` ${
+                                                    responsesLevel3.kriteria[
+                                                        index
+                                                    ]?.jawaban[subIndex]
+                                                        ?.selected ==
+                                                    alternatif[0].name
+                                                        ? "text-green-500"
+                                                        : ""
+                                                }`}
+                                            >
+                                                {alternatif[0].name}
+                                            </p>
                                         </td>
-                                        <td className="border">
-                                            <div className="flex justify-center items-center gap-5">
+                                        <td className="border-2">
+                                            <div className="flex justify-center items-center">
                                                 <Radios
                                                     index={index}
                                                     subIndex={subIndex}
@@ -131,20 +171,23 @@ export default function Level3({
                                                 />
                                             </div>
                                         </td>
-                                        <td
-                                            className={`border ${
-                                                responsesLevel3.kriteria[index]
-                                                    ?.jawaban[subIndex]
-                                                    ?.selected ==
-                                                alternatif[1].name
-                                                    ? "text-green-500"
-                                                    : ""
-                                            }`}
-                                        >
-                                            {alternatif[1].name}
+                                        <td className={`border-2`}>
+                                            <p
+                                                className={` ${
+                                                    responsesLevel3.kriteria[
+                                                        index
+                                                    ]?.jawaban[subIndex]
+                                                        ?.selected ==
+                                                    alternatif[1].name
+                                                        ? "text-green-500"
+                                                        : ""
+                                                }`}
+                                            >
+                                                {alternatif[1].name}
+                                            </p>
                                         </td>
-                                        <td className="border">
-                                            <Options
+                                        <td className="border-2 p-2 max-md:p-1">
+                                            <SelectKepentingan
                                                 onChange={handleSelectChange}
                                                 index={index}
                                                 subIndex={subIndex}
@@ -163,8 +206,15 @@ export default function Level3({
                             )}
                         </tbody>
                     </table>
-                </div>
+                </Card>
             ))}
+            <Button
+                onClick={() => handleSubmit()}
+                className={"w-2xl max-md:max-w-[90%]"}
+                disabled={!isAllFilled()}
+            >
+                Kirim Kuesioner
+            </Button>
         </div>
     );
 }
