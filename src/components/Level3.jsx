@@ -88,7 +88,7 @@ export default function Level3({
                             <tr className="text-black bg-main">
                                 <th
                                     colSpan={3}
-                                    className="text-center border-2 max-w-5xs whitespace-normal p-4"
+                                    className="text-center border-2 w-[65%] whitespace-normal p-4"
                                 >
                                     Berdasarkan sub-kriteria "{subcriteria.name}
                                     ", dalam menentukan , alternatif strategis

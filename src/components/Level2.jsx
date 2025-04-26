@@ -81,8 +81,7 @@ export default function Level2({
                                 <tr className="text-black bg-main">
                                     <th
                                         colSpan={3}
-                                        className="text-center border-2 max-w-5xs whitespace-normal p-4"
-                                    >
+                                        className="text-center border-2 w-[65%] whitespace-normal p-4"                                    >
                                         {`Berdasarkan kriteria "${criterion.name}", sub-kriteria manakah yang lebih penting dari perbandingan sub-kriteria – sub-kriteria berikut ?`}
                                     </th>
                                     <th className="border-2 text-center">
