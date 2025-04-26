@@ -44,7 +44,7 @@ export default function Level1({
     return (
         <div className="overflow-x-auto p-5">
             <Button className="pointer-events-none" variant="neutral">
-                Level 1
+                LEVEL 1 : PERBANDINGAN KRITERIA
             </Button>
             <Card className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white">
                 <table className="table table-auto">

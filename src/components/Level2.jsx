@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import Options from "./Options";
 import Radios from "./Radios";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
@@ -65,7 +63,7 @@ export default function Level2({
     return (
         <div className="overflow-x-auto p-5">
             <Button className="pointer-events-none" variant="neutral">
-                Level 2
+                LEVEL 2 : PERBANDINGAN SUB-KRITERIA
             </Button>
             {hierarchyData.criteria.map((criterion, index) =>
                 criterion.subCriteria.length > 0 ? (
