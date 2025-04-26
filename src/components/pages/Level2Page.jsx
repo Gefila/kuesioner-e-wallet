@@ -91,7 +91,10 @@ export default function Level2({
                 >
                     LEVEL 2 : PERBANDINGAN SUB-KRITERIA
                 </Button>
-                <DialogPetunjuk />
+                <DialogPetunjuk
+                    isOpenModal={isOpenModal}
+                    setIsOpenModal={setIsOpenModal}
+                />
             </div>
             {hierarchyData.criteria.map((criterion, index) =>
                 criterion.subCriteria.length > 0 ? (

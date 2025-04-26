@@ -96,7 +96,10 @@ export default function Level3({
                 >
                     LEVEL 3 : PERBANDINGAN ALTERNATIF STRATEGIS
                 </Button>
-                <DialogPetunjuk />
+                <DialogPetunjuk
+                    isOpenModal={isOpenModal}
+                    setIsOpenModal={setIsOpenModal}
+                />
             </div>
             {allSubCriteria.map((subcriteria, index) => (
                 <Card
