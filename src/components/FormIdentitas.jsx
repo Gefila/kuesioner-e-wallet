@@ -21,7 +21,12 @@ import {
 import RadioGender from "./RadioGender";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
-export default function FormIdentitas({ identitas, setIdentitas, handleLevelChange, level}) {
+export default function FormIdentitas({
+    identitas,
+    setIdentitas,
+    handleLevelChange,
+    level,
+}) {
     function handleOnChange(e) {
         const { name, value } = e.target;
         setIdentitas((prev) => ({
@@ -29,8 +34,9 @@ export default function FormIdentitas({ identitas, setIdentitas, handleLevelChan
             [name]: value,
         }));
     }
+
     return (
-        <Card className="w-[650px]">
+        <Card className="w-[650px] bg-secondary-background">
             <CardHeader>
                 <CardTitle className="text-center">
                     KUISIONER PEMILIHAN E-WALLET TERBAIK UNTUK TRANSAKSI DIGITAL
@@ -78,6 +84,17 @@ export default function FormIdentitas({ identitas, setIdentitas, handleLevelChan
                             />
                         </div>
                         <div className="flex flex-col space-y-1.5">
+                            <Label htmlFor="asalKampus">Asal Kampus</Label>
+                            <Input
+                                id="asalKampus"
+                                placeholder="Masukkan Asal Kampus"
+                                onChange={handleOnChange}
+                                value={identitas.asalKampus}
+                                name="asalKampus"
+                            />
+                        </div>
+
+                        <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="jenisKelamin">Jenis Kelamin</Label>
                             <RadioGroup
                                 onValueChange={(value) => {
@@ -90,33 +107,33 @@ export default function FormIdentitas({ identitas, setIdentitas, handleLevelChan
                                 name="jenisKelamin"
                             >
                                 <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="pria" id="pria" />
+                                    <RadioGroupItem value="Pria" id="pria" />
                                     <Label htmlFor="pria">Pria</Label>
                                 </div>
                                 <div className="flex items-center space-x-2">
                                     <RadioGroupItem
-                                        value="wanita"
+                                        value="Wanita"
                                         id="wanita"
                                     />
                                     <Label htmlFor="wanita">Wanita</Label>
                                 </div>
                             </RadioGroup>
                         </div>
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="asalKampus">Asal Kampus</Label>
-                            <Input
-                                id="asalKampus"
-                                placeholder="Masukkan Asal Kampus"
-                                onChange={handleOnChange}
-                                value={identitas.asalKampus}
-                                name="asalKampus"
-                            />
-                        </div>
                     </div>
                 </form>
             </CardContent>
             <CardFooter className="flex justify-between">
-                <Button className="w-full" onClick={()=> handleLevelChange(level)}>Mulai Kuesioner</Button>
+                <Button
+                    className="w-full"
+                    onClick={() => handleLevelChange(level)}
+                    disabled={
+                        identitas.nama === "" ||
+                        identitas.asalKampus === "" ||
+                        identitas.jenisKelamin === ""
+                    }
+                >
+                    Mulai Kuesioner
+                </Button>
             </CardFooter>
         </Card>
     );

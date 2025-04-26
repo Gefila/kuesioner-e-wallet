@@ -8,6 +8,7 @@ export default function Level1({
     hierarchyData,
     responsesLevel1,
     setResponsesLevel1,
+    handleLevelChange,
 }) {
     const perbandinganKriteria = generatePairs(hierarchyData.criteria);
 
@@ -41,9 +42,18 @@ export default function Level1({
         }));
     }
 
+    function isAllFilled() {
+        return (
+            responsesLevel1.jawaban.every(
+                (jawaban) =>
+                    jawaban?.selected && jawaban?.tingkatKepentingan > 0
+            ) && perbandinganKriteria.length == responsesLevel1.jawaban.length
+        );
+    }
+
     return (
-        <div className="overflow-x-auto p-5">
-            <Button className="pointer-events-none" variant="neutral">
+        <div className="overflow-x-auto p-5 flex flex-col items-center">
+            <Button className="pointer-events-none self-start" variant="neutral">
                 LEVEL 1 : PERBANDINGAN KRITERIA
             </Button>
             <Card className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white">
@@ -121,6 +131,13 @@ export default function Level1({
                     </tbody>
                 </table>
             </Card>
+            <Button
+                onClick={() => handleLevelChange(1)}
+                className={"w-2xl"}
+                disabled={!isAllFilled()}
+            >
+                Selanjutnya
+            </Button>
         </div>
     );
 }

@@ -8,6 +8,7 @@ export default function Level2({
     generatePairs,
     responsesLevel2,
     setResponsesLevel2,
+    handleLevelChange,
 }) {
     const perbandinganSubKriteria = hierarchyData.criteria.map((criterion) =>
         generatePairs(criterion.subCriteria)
@@ -60,9 +61,25 @@ export default function Level2({
         });
     }
 
+    function isAllFilled() {
+        const kriteriaCount = hierarchyData.criteria.filter(
+            (item) => item.subCriteria.length > 0
+        ).length;
+        return (
+            responsesLevel2.kriteria.every((kriteria) =>
+                kriteria.jawaban.every(
+                    (jawaban) => jawaban.tingkatKepentingan !== 0
+                )
+            ) && kriteriaCount == responsesLevel2.kriteria.length
+        );
+    }
+
     return (
-        <div className="overflow-x-auto p-5">
-            <Button className="pointer-events-none" variant="neutral">
+        <div className="overflow-x-auto p-5 flex flex-col items-center">
+            <Button
+                className="pointer-events-none self-start"
+                variant="neutral"
+            >
                 LEVEL 2 : PERBANDINGAN SUB-KRITERIA
             </Button>
             {hierarchyData.criteria.map((criterion, index) =>
@@ -81,7 +98,8 @@ export default function Level2({
                                 <tr className="text-black bg-main">
                                     <th
                                         colSpan={3}
-                                        className="text-center border-2 w-[65%] whitespace-normal p-4"                                    >
+                                        className="text-center border-2 w-[65%] whitespace-normal p-4"
+                                    >
                                         {`Berdasarkan kriteria "${criterion.name}", sub-kriteria manakah yang lebih penting dari perbandingan sub-kriteria – sub-kriteria berikut ?`}
                                     </th>
                                     <th className="border-2 text-center">
@@ -167,6 +185,13 @@ export default function Level2({
                     </Card>
                 ) : null
             )}
+            <Button
+                onClick={() => handleLevelChange(2)}
+                className={"w-2xl"}
+                disabled={!isAllFilled()}
+            >
+                Selanjutnya
+            </Button>
         </div>
     );
 }

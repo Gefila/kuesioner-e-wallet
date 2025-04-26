@@ -54,13 +54,6 @@ function App() {
             },
             {
                 id: 2,
-                name: "Biaya Admin",
-                penjelasan:
-                    "Merujuk pada segala biaya yang dikenakan kepada pengguna saat menggunakan e-wallet. Bisa berupa biaya transfer ke bank, biaya top-up, biaya penarikan tunai, atau potongan untuk transaksi tertentu.",
-                subCriteria: [],
-            },
-            {
-                id: 3,
                 name: "Kemudahan Penggunaan",
                 penjelasan:
                     "Mengacu pada kemudahan aplikasi e-wallet tersebut digunakan. Menu dan fitur yang diberikan mudah untuk dipelajari dan dimengerti.",
@@ -86,7 +79,7 @@ function App() {
                 ],
             },
             {
-                id: 4,
+                id: 3,
                 name: "Fitur",
                 penjelasan:
                     "Mencakup kelengkapan layanan yang ditawarkan oleh e-wallet untuk memberikan nilai tambah dan meningkatkan kenyamanan pengguna dalam berbagai transaksi. Termasuk juga kerja sama dengan berbagai perusahaan dan e-commerce.",
@@ -110,6 +103,13 @@ function App() {
                             "Ketersediaan Fitur-fitur atau layanan tertentu pada aplikasi e-wallet untuk menunjang kenyamanan dan fleksibilitas pengguna dalam bertransaksi. Seperti fitur top up untuk kebutuhan sehari hari seperti pulsa, paket data, token listrik, dll. ",
                     },
                 ],
+            },
+            {
+                id: 4,
+                name: "Biaya Admin",
+                penjelasan:
+                    "Merujuk pada segala biaya yang dikenakan kepada pengguna saat menggunakan e-wallet. Bisa berupa biaya transfer ke bank, biaya top-up, biaya penarikan tunai, atau potongan untuk transaksi tertentu.",
+                subCriteria: [],
             },
             {
                 id: 5,
@@ -195,6 +195,7 @@ function App() {
                     generatePairs={generatePairs}
                     responsesLevel1={responsesLevel1}
                     setResponsesLevel1={setResponsesLevel1}
+                    handleLevelChange={handleLevelChange}
                 />
             ) : level === 2 ? (
                 <Level2
@@ -202,6 +203,7 @@ function App() {
                     generatePairs={generatePairs}
                     responsesLevel2={responsesLevel2}
                     setResponsesLevel2={setResponsesLevel2}
+                    handleLevelChange={handleLevelChange}
                 />
             ) : level === 3 ? (
                 <Level3
@@ -209,24 +211,9 @@ function App() {
                     generatePairs={generatePairs}
                     responsesLevel3={responsesLevel3}
                     setResponsesLevel3={setResponsesLevel3}
+                    handleSubmit={handleSubmit}
                 />
             ) : null}
-
-            <button
-                className="btn btn-primary mt-4"
-                onClick={() => handleLevelChange(level)}
-            >
-                {level === 1
-                    ? "Lanjut ke Level 2"
-                    : level === 2
-                    ? "Lanjut ke Level 3"
-                    : "Selesai"}
-            </button>
-            {level === 4 && (
-                <button className="btn btn-success mt-4" onClick={handleSubmit}>
-                    Kirim Jawaban
-                </button>
-            )}
         </div>
     );
 }

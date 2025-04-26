@@ -8,6 +8,7 @@ export default function Level3({
     generatePairs,
     responsesLevel3,
     setResponsesLevel3,
+    handleSubmit,
 }) {
     const perbandinganAlternatif = generatePairs(hierarchyData.alternatives);
     const kriteriaTunggal = hierarchyData.criteria.filter(
@@ -68,9 +69,24 @@ export default function Level3({
         });
     }
 
+    function isAllFilled() {
+        const subKriteriaCount = allSubCriteria.length;
+        return (
+            responsesLevel3.kriteria.every((kriteria) =>
+                kriteria.jawaban.every(
+                    (jawaban) => jawaban.tingkatKepentingan !== 0
+                )
+            ) && subKriteriaCount == responsesLevel3.kriteria.length
+        );
+    }
+    console.log(isAllFilled());
+
     return (
-        <div className="overflow-x-auto p-5">
-            <Button className="pointer-events-none" variant="neutral">
+        <div className="overflow-x-auto p-5 flex flex-col items-center">
+            <Button
+                className="pointer-events-none self-start"
+                variant="neutral"
+            >
                 LEVEL 3 : PERBANDINGAN ALTERNATIF STRATEGIS
             </Button>
             {allSubCriteria.map((subcriteria, index) => (
@@ -177,6 +193,13 @@ export default function Level3({
                     </table>
                 </Card>
             ))}
+            <Button
+                onClick={() => handleSubmit()}
+                className={"w-2xl"}
+                disabled={!isAllFilled()}
+            >
+                Kirim Kuesioner
+            </Button>
         </div>
     );
 }
