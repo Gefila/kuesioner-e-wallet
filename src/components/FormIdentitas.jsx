@@ -19,8 +19,9 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import RadioGender from "./RadioGender";
+import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
-export default function FormIdentitas({identitas, setIdentitas}) {
+export default function FormIdentitas({ identitas, setIdentitas, handleLevelChange, level}) {
     function handleOnChange(e) {
         const { name, value } = e.target;
         setIdentitas((prev) => ({
@@ -68,11 +69,38 @@ export default function FormIdentitas({identitas, setIdentitas}) {
                     <div className="grid w-full items-center gap-4">
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="nama">Nama</Label>
-                            <Input id="nama" placeholder="Masukkan Nama" onChange={handleOnChange} value={identitas.nama} name="nama" />
+                            <Input
+                                id="nama"
+                                placeholder="Masukkan Nama"
+                                onChange={handleOnChange}
+                                value={identitas.nama}
+                                name="nama"
+                            />
                         </div>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="jenisKelamin">Jenis Kelamin</Label>
-                            <RadioGender onChange={handleOnChange} name="jenisKelamin" />
+                            <RadioGroup
+                                onValueChange={(value) => {
+                                    setIdentitas((prev) => ({
+                                        ...prev,
+                                        jenisKelamin: value,
+                                    }));
+                                }}
+                                value={identitas.jenisKelamin}
+                                name="jenisKelamin"
+                            >
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="pria" id="pria" />
+                                    <Label htmlFor="pria">Pria</Label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem
+                                        value="wanita"
+                                        id="wanita"
+                                    />
+                                    <Label htmlFor="wanita">Wanita</Label>
+                                </div>
+                            </RadioGroup>
                         </div>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="asalKampus">Asal Kampus</Label>
@@ -88,7 +116,7 @@ export default function FormIdentitas({identitas, setIdentitas}) {
                 </form>
             </CardContent>
             <CardFooter className="flex justify-between">
-                <Button className="w-full">Mulai Kuesioner</Button>
+                <Button className="w-full" onClick={()=> handleLevelChange(level)}>Mulai Kuesioner</Button>
             </CardFooter>
         </Card>
     );

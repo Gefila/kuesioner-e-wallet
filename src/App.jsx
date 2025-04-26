@@ -4,6 +4,7 @@ import Level2 from "./components/Level2";
 import Level3 from "./components/Level3";
 import { webhookData } from "./assets/utils/webhookData";
 import FormIdentitas from "./components/FormIdentitas";
+import { Button } from "./components/ui/button";
 
 function App() {
     const [responses, setResponses] = useState([]);
@@ -143,8 +144,10 @@ function App() {
     async function handleSubmit() {
         const filterResponsesLevel2 = {
             ...responsesLevel2,
-            kriteria: responsesLevel2.kriteria.filter(item => item !== undefined)
-        }
+            kriteria: responsesLevel2.kriteria.filter(
+                (item) => item !== undefined
+            ),
+        };
         const allResponses = [
             { ...responsesLevel1, level: 1 },
             { ...filterResponsesLevel2, level: 2 },
@@ -174,19 +177,17 @@ function App() {
         }
     }
 
-    useEffect(() => {
-    }, []);
+    useEffect(() => {}, []);
 
     return (
-        <div className="container mx-auto p-4 ">
-            <h1 className="text-3xl font-bold mb-4">
-                KUISIONER PEMILIHAN E-WALLET TERBAIK UNTUK TRANSAKSI DIGITAL
-                BAGI MAHASISWA
-            </h1>
+        <div className="flex flex-col items-center justify-center min-h-screen p-4 relative">
+            <div class="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px]"></div>
             {level === 0 ? (
                 <FormIdentitas
                     identitas={identitas}
                     setIdentitas={setIdentitas}
+                    handleLevelChange={handleLevelChange}
+                    level={level}
                 />
             ) : level === 1 ? (
                 <Level1
@@ -215,9 +216,7 @@ function App() {
                 className="btn btn-primary mt-4"
                 onClick={() => handleLevelChange(level)}
             >
-                {level === 0
-                    ? "Mulai Kuisioner"
-                    : level === 1
+                {level === 1
                     ? "Lanjut ke Level 2"
                     : level === 2
                     ? "Lanjut ke Level 3"
