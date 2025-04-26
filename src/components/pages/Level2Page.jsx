@@ -83,13 +83,16 @@ export default function Level2({
     }, []);
 
     return (
-        <div className="overflow-x-auto p-5 flex flex-col items-center">
-            <div className="flex justify-between w-full max-w-7xl mx-auto">
+        <div className="overflow-x-auto p-5 flex flex-col items-center w-full max-md:p-2">
+            <div className="flex justify-between w-full max-w-7xl mx-auto max-md:max-w-[100%]">
                 <Button
                     className="pointer-events-none self-start"
                     variant="neutral"
                 >
-                    LEVEL 2 : PERBANDINGAN SUB-KRITERIA
+                    <span className="max-md:hidden">
+                        LEVEL 2 : PERBANDINGAN SUB-KRITERIA
+                    </span>
+                    LEVEL 2
                 </Button>
                 <DialogPetunjuk
                     isOpenModal={isOpenModal}
@@ -100,10 +103,10 @@ export default function Level2({
                 criterion.subCriteria.length > 0 ? (
                     <Card
                         key={index}
-                        className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white"
+                        className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white max-md:max-w-[100%] max-md:text-xs"
                     >
                         <Card>
-                            <p className="text-center text-lg font-bold px-1">
+                            <p className="text-center text-lg font-bold px-1 max-md:text-xs">
                                 {`${criterion.penjelasan}`}
                             </p>
                         </Card>
@@ -112,11 +115,11 @@ export default function Level2({
                                 <tr className="text-black bg-main">
                                     <th
                                         colSpan={3}
-                                        className="text-center border-2 w-[65%] whitespace-normal p-4"
+                                        className="text-center border-2 w-[65%] whitespace-normal p-4 max-md:p-1"
                                     >
                                         {`Berdasarkan kriteria "${criterion.name}", sub-kriteria manakah yang lebih penting dari perbandingan sub-kriteria – sub-kriteria berikut ?`}
                                     </th>
-                                    <th className="border-2 text-center">
+                                    <th className="border-2 text-center max-md:p-1">
                                         Berapa Tingkat Kepentingannya ?
                                     </th>
                                 </tr>
@@ -128,7 +131,9 @@ export default function Level2({
                                             key={subIndex}
                                             className="text-center bg-background"
                                         >
-                                            <td className={`border-2 p-4`}>
+                                            <td
+                                                className={`border-2 p-4 max-md:p-1`}
+                                            >
                                                 <p
                                                     className={` ${
                                                         responsesLevel2
@@ -174,7 +179,7 @@ export default function Level2({
                                                     {pair[1].name}
                                                 </p>
                                             </td>
-                                            <td className="border-2 p-2">
+                                            <td className="border-2 p-2 max-md:p-1">
                                                 <SelectKepentingan
                                                     onChange={
                                                         handleSelectChange
@@ -201,7 +206,7 @@ export default function Level2({
             )}
             <Button
                 onClick={() => handleLevelChange(2)}
-                className={"w-2xl"}
+                className={"w-2xl max-md:max-w-[90%]"}
                 disabled={!isAllFilled()}
             >
                 Selanjutnya

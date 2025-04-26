@@ -36,13 +36,13 @@ export default function FormIdentitas({
     }
 
     return (
-        <Card className="w-[650px] bg-secondary-background">
+        <Card className="w-[650px] max-md:w-[95%] bg-secondary-background my-auto">
             <CardHeader>
-                <CardTitle className="text-center text-2xl">
+                <CardTitle className="text-center text-2xl max-md:text-xl">
                     KUISIONER PEMILIHAN E-WALLET TERBAIK UNTUK TRANSAKSI DIGITAL
                     BAGI MAHASISWA
                 </CardTitle>
-                <CardDescription className="text-justify text-sm text-muted-foreground">
+                <CardDescription className="text-justify text-sm text-muted-foreground max-md:hidden">
                     Di era digital saat ini, dompet elektronik (e-wallet) telah
                     menjadi bagian penting dalam kehidupan mahasiswa, memberikan
                     kemudahan, kecepatan, dan berbagai fitur menarik dalam

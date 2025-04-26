@@ -60,13 +60,16 @@ export default function Level1({
     }, []);
 
     return (
-        <div className="overflow-x-auto p-5 flex flex-col items-center">
-            <div className="flex justify-between w-full max-w-7xl mx-auto">
+        <div className="overflow-x-auto p-5 flex flex-col items-center w-full max-md:p-2">
+            <div className="flex justify-between w-full max-w-7xl mx-auto max-md:max-w-[100%]">
                 <Button
                     className="pointer-events-none self-start"
                     variant="neutral"
                 >
-                    LEVEL 1 : PERBANDINGAN KRITERIA
+                    <span className="max-md:hidden">
+                        LEVEL 1 : PERBANDINGAN KRITERIA
+                    </span>
+                    LEVEL 1
                 </Button>
                 <DialogPetunjuk
                     isOpenModal={isOpenModal}
@@ -74,20 +77,20 @@ export default function Level1({
                 />
             </div>
 
-            <Card className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white">
+            <Card className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white max-md:max-w-[100%] max-md:text-xs">
                 <table className="table table-auto">
                     <thead>
                         <tr className="text-black bg-main">
                             <th
                                 colSpan={3}
-                                className="text-center border-2 w-[65%] whitespace-normal p-4"
+                                className="text-center border-2 w-[60%] whitespace-normal p-4 max-md:p-1"
                             >
                                 Dalam menentukan e-Wallet Terbaik Untuk
                                 Transaksi Digital Bagi Mahasiswa, kriteria
                                 manakah yang lebih penting dibandingkan
                                 kriteria-kriteria berikut ?
                             </th>
-                            <th className="border-2 text-center">
+                            <th className="border-2 text-center max-md:p-1">
                                 Berapa Tingkat Kepentingannya ?
                             </th>
                         </tr>
@@ -95,7 +98,7 @@ export default function Level1({
                     <tbody className="bg-background">
                         {perbandinganKriteria.map((pair, index) => (
                             <tr key={index} className="text-center">
-                                <td className={`border-2 p-4`}>
+                                <td className={`border-2 p-4 max-md:p-1`}>
                                     <p
                                         className={` ${
                                             responsesLevel1.jawaban[index]
@@ -132,7 +135,7 @@ export default function Level1({
                                         {pair[1].name}
                                     </p>
                                 </td>
-                                <td className="border-2 p-2">
+                                <td className="border-2 p-2 max-md:p-1">
                                     <SelectKepentingan
                                         onChange={handleSelectChange}
                                         index={index}
@@ -151,7 +154,7 @@ export default function Level1({
             </Card>
             <Button
                 onClick={() => handleLevelChange(1)}
-                className={"w-2xl"}
+                className={"w-2xl max-md:max-w-[90%]"}
                 disabled={!isAllFilled()}
             >
                 Selanjutnya

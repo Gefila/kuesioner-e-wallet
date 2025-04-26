@@ -88,13 +88,16 @@ export default function Level3({
     }, []);
 
     return (
-        <div className="overflow-x-auto p-5 flex flex-col items-center">
-            <div className="flex justify-between w-full max-w-7xl mx-auto">
+        <div className="overflow-x-auto p-5 flex flex-col items-center w-full max-md:p-2">
+            <div className="flex justify-between w-full max-w-7xl mx-auto max-md:max-w-[100%]">
                 <Button
                     className="pointer-events-none self-start"
                     variant="neutral"
                 >
-                    LEVEL 3 : PERBANDINGAN ALTERNATIF STRATEGIS
+                    <span className="max-md:hidden">
+                        LEVEL 3 : PERBANDINGAN ALTERNATIF STRATEGIS
+                    </span>
+                    LEVEL 3
                 </Button>
                 <DialogPetunjuk
                     isOpenModal={isOpenModal}
@@ -104,10 +107,10 @@ export default function Level3({
             {allSubCriteria.map((subcriteria, index) => (
                 <Card
                     key={index}
-                    className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white"
+                    className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white max-md:max-w-[100%] max-md:text-xs"
                 >
                     <Card>
-                        <p className="text-center text-lg font-bold px-1">
+                        <p className="text-center text-lg font-bold px-1 max-md:text-xs">
                             {`${subcriteria.penjelasan}`}
                         </p>
                     </Card>
@@ -116,14 +119,14 @@ export default function Level3({
                             <tr className="text-black bg-main">
                                 <th
                                     colSpan={3}
-                                    className="text-center border-2 w-[65%] whitespace-normal p-4"
+                                    className="text-center border-2 w-[65%] whitespace-normal p-4 max-md:p-1"
                                 >
                                     Berdasarkan sub-kriteria "{subcriteria.name}
                                     ", dalam menentukan , alternatif strategis
                                     manakah yang lebih penting dari perbandingan
                                     alternatif-alternatif strategis berikut ini?
                                 </th>
-                                <th className="border-2 text-center">
+                                <th className="border-2 text-center max-md:p-1">
                                     Berapa Tingkat Kepentingannya ?
                                 </th>
                             </tr>
@@ -135,7 +138,7 @@ export default function Level3({
                                         key={subIndex}
                                         className="text-center bg-background"
                                     >
-                                        <td className={`border-2 p-4`}>
+                                        <td className={`border-2 p-4 max-md:p-1`}>
                                             <p
                                                 className={` ${
                                                     responsesLevel3.kriteria[
@@ -151,7 +154,7 @@ export default function Level3({
                                             </p>
                                         </td>
                                         <td className="border-2">
-                                            <div className="flex justify-center items-center gap-5">
+                                            <div className="flex justify-center items-center">
                                                 <Radios
                                                     index={index}
                                                     subIndex={subIndex}
@@ -183,7 +186,7 @@ export default function Level3({
                                                 {alternatif[1].name}
                                             </p>
                                         </td>
-                                        <td className="border-2 p-2">
+                                        <td className="border-2 p-2 max-md:p-1">
                                             <SelectKepentingan
                                                 onChange={handleSelectChange}
                                                 index={index}
@@ -207,7 +210,7 @@ export default function Level3({
             ))}
             <Button
                 onClick={() => handleSubmit()}
-                className={"w-2xl"}
+                className={"w-2xl max-md:max-w-[90%]"}
                 disabled={!isAllFilled()}
             >
                 Kirim Kuesioner

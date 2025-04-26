@@ -198,7 +198,7 @@ function App() {
     useEffect(() => {}, []);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-4 relative">
+        <div className="flex flex-col items-center justify-start min-h-screen relative ">
             <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px]"></div>
             {level === 0 ? (
                 <FormIdentitas
