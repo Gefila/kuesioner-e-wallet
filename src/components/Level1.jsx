@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import Options from "./Options";
 import Radios from "./Radios";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
@@ -66,7 +64,7 @@ export default function Level1({
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="bg-background">
                         {perbandinganKriteria.map((pair, index) => (
                             <tr key={index} className="text-center">
                                 <td className={`border-2 p-4`}>
