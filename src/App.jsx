@@ -48,7 +48,7 @@ function App() {
                         id: 2,
                         name: "Keamanan Saldo",
                         penjelasan:
-                            "Keamanan Saldo, Seberapa aman saldo yang disimpan pada e-wallet tersebut. Misalnya terjamin dari kehilangan saldo tiba-tiba tanpa alasan yang jelas meskipun e wallet lama tidak dipakai. ",
+                            "Seberapa aman saldo yang disimpan pada e-wallet tersebut. Misalnya terdapat jaminan saldo kembali jika saldo tiba-tiba tanpa alasan yang jelas ketika e wallet tidak dipakai",
                     },
                 ],
             },
@@ -56,7 +56,7 @@ function App() {
                 id: 2,
                 name: "Kemudahan Penggunaan",
                 penjelasan:
-                    "Kemudahan Penggunaan, Mengacu pada kemudahan aplikasi e-wallet tersebut digunakan. Menu dan fitur yang diberikan mudah untuk dipelajari dan dimengerti.",
+                    "Kemudahan Penggunaan, Mengacu pada kemudahan aplikasi e-wallet tersebut digunakan. Menu dan fitur yang diberikan mudah untuk dipelajari dan dimengerti, pemrosesan transaksi yang cepat, dan regstrasi akunnya mudah",
                 subCriteria: [
                     {
                         id: 3,
@@ -68,13 +68,13 @@ function App() {
                         id: 4,
                         name: "Kemudahan Registrasi dan Verifikasi",
                         penjelasan:
-                            "Kemudahan Registrasi dan Verifikasi, Proses pendaftaran akun e-wallet untuk pengguna baru dan upgrade akun ke versi premium atau plus untuk mendapatkan fitur dan limit saldo tambahan. ",
+                            "Kemudahan Registrasi dan Verifikasi, Proses pendaftaran akun e-wallet untuk pengguna baru dan upgrade akun ke versi premium atau plus untuk mendapatkan fitur dan limit saldo tambahan.",
                     },
                     {
                         id: 5,
                         name: "Kecepatan Proses Transaksi",
                         penjelasan:
-                            "Kecepatan Proses Transaksi, Kecepatan e-wallet ketika melakukan transaksi seperti top up saldo, pembayaran via scan QR-code/ QRIS, pembayaran e-commerce via transfer ke bank, ataupun transfer antara pengguna e-wallet yang sama atau berbeda aplikasi. ",
+                            "Kecepatan Proses Transaksi, Kecepatan e-wallet ketika melakukan transaksi seperti top up saldo, pembayaran via scan QR-code/ QRIS, pembayaran e-commerce via transfer ke bank, ataupun transfer antara pengguna e-wallet yang sama atau berbeda aplikasi.",
                     },
                 ],
             },
@@ -88,19 +88,19 @@ function App() {
                         id: 6,
                         name: "Promo & Cashback",
                         penjelasan:
-                            "Promo & Cashback, Penawaran menarik yang ditawarkan e-wallet seperti diskon, cashback, poin reward, free biaya transfer, dsb. ",
+                            "Promo & Cashback, Penawaran menarik yang ditawarkan e-wallet seperti diskon, cashback, poin reward, free biaya transfer, dsb.",
                     },
                     {
                         id: 7,
                         name: "Kerjasama Dengan Merchant & E-Commerce",
                         penjelasan:
-                            "Kerjasama Dengan Merchant & E-Commerce, Perusahaan e-wallet bekerja sama dengan merchant, online shop, atau minimarket tertentu agar pengguna dapat langsung melakukan pembayaran menggunakan e-wallet tersebut. ",
+                            "Kerjasama Dengan Merchant & E-Commerce, Perusahaan e-wallet bekerja sama dengan merchant, online shop, atau minimarket tertentu agar pengguna dapat langsung melakukan pembayaran menggunakan e-wallet tersebut.",
                     },
                     {
                         id: 8,
                         name: "Kelengkapan Fitur",
                         penjelasan:
-                            "Kelengkapan Fitur, Ketersediaan Fitur-fitur atau layanan tertentu pada aplikasi e-wallet untuk menunjang kenyamanan dan fleksibilitas pengguna dalam bertransaksi. Seperti fitur top up untuk kebutuhan sehari hari seperti pulsa, paket data, token listrik, dll. ",
+                            "Ketersediaan Fitur-fitur atau layanan tertentu pada aplikasi e-wallet untuk menunjang kenyamanan dan fleksibilitas pengguna dalam bertransaksi. Seperti fitur top up untuk kebutuhan sehari hari seperti pulsa, paket data, token listrik, dll. Dapat juga berupa fitur pembayaran QR scan dan QRIS untuk pembayaran tanpa perlu menuliskan nomor rekening atau virtual account",
                     },
                 ],
             },
