@@ -12,7 +12,7 @@ export default function SelectKepentingan({
 
     return (
         <select
-            className="border rounded p-2 w-full bg-white"
+            className="border-2 rounded p-2 w-full bg-white disabled:bg-gray-400"
             onChange={(e) => onChange(index, e.target.value, subIndex)}
             disabled={selectedElement === undefined}
             defaultValue={"0"}

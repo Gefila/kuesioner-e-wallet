@@ -113,9 +113,9 @@ function App() {
             },
             {
                 id: 5,
-                name: "Customer Service",
+                name: "Responsivitas Layanan",
                 penjelasan:
-                    "Customer Service, Kualitas dukungan dan layanan bantuan yang diberikan oleh penyedia e-wallet kepada penggunanya, khususnya ketika mengalami kendala.",
+                    "Responsivitas Layanan, Kualitas dukungan dan layanan bantuan yang diberikan oleh penyedia e-wallet kepada penggunanya, khususnya ketika mengalami kendala.",
                 subCriteria: [],
             },
         ],
