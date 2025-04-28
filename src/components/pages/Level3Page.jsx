@@ -74,9 +74,13 @@ export default function Level3({
 
     function isAllFilled() {
         const subKriteriaCount = allSubCriteria.length;
+        const isUndefined = responsesLevel3.kriteria?.some(
+            (kriteria) => kriteria === undefined
+        );
+        if (isUndefined) return;
         return (
             responsesLevel3.kriteria.every((kriteria) =>
-                kriteria.jawaban.every(
+                kriteria.jawaban?.every(
                     (jawaban) => jawaban.tingkatKepentingan !== 0
                 )
             ) && subKriteriaCount == responsesLevel3.kriteria.length

@@ -68,9 +68,14 @@ export default function Level2({
         const kriteriaCount = hierarchyData.criteria.filter(
             (item) => item.subCriteria.length > 0
         ).length;
+        const isUndefined = responsesLevel2.kriteria?.some(
+            (kriteria) => kriteria === undefined
+        );
+        if (isUndefined) return;
+
         return (
-            responsesLevel2.kriteria.every((kriteria) =>
-                kriteria.jawaban.every(
+            responsesLevel2.kriteria?.every((kriteria) =>
+                kriteria.jawaban?.every(
                     (jawaban) => jawaban.tingkatKepentingan !== 0
                 )
             ) && kriteriaCount == responsesLevel2.kriteria.length

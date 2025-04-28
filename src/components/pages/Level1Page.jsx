@@ -46,6 +46,10 @@ export default function Level1({
     }
 
     function isAllFilled() {
+        const isUndefined = responsesLevel1.jawaban?.some(
+            (jawaban) => jawaban === undefined
+        );
+        if (isUndefined) return;
         return (
             responsesLevel1.jawaban.every(
                 (jawaban) =>
