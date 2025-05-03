@@ -4,6 +4,7 @@ import { Card } from "../ui/card";
 import SelectKepentingan from "../SelectKepentingan";
 import { useEffect, useState } from "react";
 import DialogPetunjuk from "../DialogPetunjuk";
+import InfoConsistency from "../InfoConsistency";
 
 export default function Level2({
     hierarchyData,
@@ -82,6 +83,95 @@ export default function Level2({
         );
     }
 
+    function isFilled(index) {
+        if (
+            responsesLevel2.kriteria[index]?.jawaban.length !==
+            perbandinganSubKriteria[index].length
+        )
+            return;
+        return responsesLevel2.kriteria[index]?.jawaban?.every(
+            (jawaban) => jawaban.tingkatKepentingan !== 0
+        );
+    }
+
+
+    function checkInconsistency(data, index) {
+        if (!isFilled(index)) return;
+        const subCriteria = hierarchyData.criteria[index].subCriteria.map(
+            (criterion) => criterion.name
+        );
+        const matrix = Array.from({ length: subCriteria.length }, () =>
+            Array(subCriteria.length).fill(1)
+        );
+
+        data.jawaban.forEach(({ tingkatKepentingan, pilihan, selected }) => {
+            const [alt1, alt2] = pilihan;
+            const i = subCriteria.indexOf(alt1);
+            const j = subCriteria.indexOf(alt2);
+
+            if (selected === alt1) {
+                matrix[i][j] = tingkatKepentingan;
+                matrix[j][i] = 1 / tingkatKepentingan;
+            } else {
+                matrix[i][j] = 1 / tingkatKepentingan;
+                matrix[j][i] = tingkatKepentingan;
+            }
+        });
+
+        return ahpConsistencyCheck(matrix);
+    }
+
+    function ahpConsistencyCheck(matrix) {
+        const n = matrix.length;
+        const RI_VALUES = {
+            1: 0.0,
+            2: 0.0,
+            3: 0.58,
+            4: 0.9,
+            5: 1.12,
+            6: 1.24,
+            7: 1.32,
+            8: 1.41,
+            9: 1.45,
+            10: 1.49,
+        };
+
+        // Step 1: Hitung bobot prioritas (menggunakan rata-rata geometri)
+        const weights = matrix.map((row) => {
+            const product = row.reduce((a, b) => a * b, 1);
+            return Math.pow(product, 1 / n);
+        });
+
+        // Normalisasi bobot
+        const weightSum = weights.reduce((a, b) => a + b, 0);
+        const normalizedWeights = weights.map((w) => w / weightSum);
+
+        // Step 2: Hitung λ_max
+        const lambdaMax =
+            matrix
+                .map(
+                    (row, i) =>
+                        row.reduce(
+                            (sum, val, j) => sum + val * normalizedWeights[j],
+                            0
+                        ) / normalizedWeights[i]
+                )
+                .reduce((a, b) => a + b, 0) / n;
+
+        // Step 3: Hitung CI dan CR
+        const CI = (lambdaMax - n) / (n - 1);
+        const RI = RI_VALUES[n] || 1.49; // fallback RI jika n > 10
+        const CR = CI / RI;
+
+        return {
+            weights: normalizedWeights,
+            lambdaMax: lambdaMax.toFixed(3),
+            CI: CI.toFixed(3),
+            CR: CR.toFixed(2),
+            isConsistent: CR < 0.1,
+        };
+    }
+
     useEffect(() => {
         window.scrollTo(0, 0);
         document.title = "Kuesioner E-Wallet - Level 2";
@@ -108,13 +198,20 @@ export default function Level2({
                 criterion.subCriteria.length > 0 ? (
                     <Card
                         key={index}
-                        className="overflow-x-auto w-full max-w-7xl mx-auto my-4 p-4 rounded-lg shadow-lg bg-white max-md:max-w-[100%] max-md:text-xs"
+                        className="overflow-x-auto w-full max-w-7xl mx-auto my-4 gap-3 p-4 rounded-lg shadow-lg bg-white max-md:max-w-[100%] max-md:text-xs"
                     >
                         <Card>
                             <p className="text-center text-lg font-bold px-1 max-md:text-xs">
                                 {`${criterion.penjelasan}`}
                             </p>
                         </Card>
+                        <InfoConsistency
+                            data={checkInconsistency(
+                                responsesLevel2.kriteria[index],
+                                index
+                            )}
+                        />
+
                         <table className="table table-auto">
                             <thead>
                                 <tr className="text-black bg-main">
