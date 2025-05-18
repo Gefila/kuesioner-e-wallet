@@ -3,8 +3,6 @@ import Level1 from "./components/pages/Level1Page";
 import Level2 from "./components/pages/Level2Page";
 import Level3 from "./components/pages/Level3Page";
 import { webhookData } from "./assets/utils/webhookData";
-import FormIdentitas from "./components/FormIdentitas";
-import DialogPetunjuk from "./components/DialogPetunjuk";
 import WelcomePage from "./components/pages/WelcomePage";
 
 function App() {
@@ -159,7 +157,7 @@ function App() {
         try {
             const dataToSend = webhookData(allResponses, identitas);
             const response = await fetch(
-                "https://discord.com/api/webhooks/1364471453667295302/L9XQk1HxpksFWqqjVMQPtoCW-vD2ZzO-GR6GJuQyzbqusuktZBhlAZseqpbAiSV3IiAY",
+                import.meta.env.VITE_WEBHOOK_URL,
                 {
                     method: "POST",
                     headers: {
@@ -196,7 +194,9 @@ function App() {
         });
     }
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        console.log(import.meta.env.VITE_WEBHOOK_URL);
+    }, []);
 
     return (
         <div className="flex flex-col items-center justify-start min-h-screen relative">
