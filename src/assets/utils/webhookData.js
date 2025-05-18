@@ -5,7 +5,6 @@ export function webhookData(data, indentitas) {
         
     });
 
-    console.log(data)
 
     const level2 = data[1]?.kriteria.map((item) => {
         const value = item.jawaban.map((subItem) => {   

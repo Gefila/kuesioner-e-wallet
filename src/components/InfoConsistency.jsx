@@ -11,7 +11,6 @@ export default function InfoConsistency({ data }) {
             </Button>
         );
     const { isConsistent, CR } = data;
-    console.log(data);
     return (
         <Button
             className={`self-end bg-secondary-background  max-md:w-[35%] max-md:text-xs h-auto p-1.5  ${

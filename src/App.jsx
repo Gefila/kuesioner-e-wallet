@@ -166,7 +166,6 @@ function App() {
                     body: JSON.stringify(dataToSend),
                 }
             );
-            console.log(dataToSend);
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
@@ -195,7 +194,6 @@ function App() {
     }
 
     useEffect(() => {
-        console.log(import.meta.env.VITE_WEBHOOK_URL);
     }, []);
 
     return (
